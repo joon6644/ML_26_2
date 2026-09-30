@@ -1,0 +1,21 @@
+# 수집
+requests
+python-dotenv
+pypdf
+holidays
+
+# 데이터 처리
+pandas
+numpy
+pyarrow
+
+# 모델링
+scikit-learn
+lightgbm
+statsmodels
+
+# 분석
+matplotlib
+tabulate
+jupyter
+ipykernel

@@ -1,0 +1,33 @@
+# 비밀 값 (.env 백업·사본 포함, 예시 파일만 허용)
+.env
+.env.*
+!.env.example
+
+# 수집 원본 데이터 / 가공 데이터 (용량 큼 - 드라이브로 공유). 폴더 구조는 .gitkeep으로 유지
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/kma_buoy/
+data/raw/kma_buoy/*
+!data/raw/kma_buoy/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+!data/processed/*/
+data/processed/*/*
+!data/processed/*/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# 수집 로그
+logs/
+
+# 로컬 도구·OS
+.claude/
+.vscode/
+Thumbs.db
+Desktop.ini
+.DS_Store
