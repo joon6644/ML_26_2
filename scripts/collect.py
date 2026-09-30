@@ -28,6 +28,21 @@ class KeyRing:
         self.keys = [ENV[k] for k in sorted(ENV) if k.startswith("DATA_GO_KR_API_KEY") and ENV[k]]
         self.i = 0
 
+    def xml(self, url, params):
+        """기관 서버(축평원 등) XML 응답용. 한도 초과·미등록 키는 다음 키로 넘긴다."""
+        while True:
+            body = None
+            try:
+                body = http_get(url, {"serviceKey": self.keys[self.i], **params})
+            except QuotaExceeded:
+                pass
+            if body is not None and "등록되지 않은 서비스키" not in body and "SERVICE_KEY_IS_NOT_REGISTERED" not in body:
+                return body
+            self.i += 1
+            if self.i >= len(self.keys):
+                raise QuotaExceeded(url)
+            print(f"  - 키 {self.i}번 사용 불가(한도·미등록) → 키 {self.i + 1}번으로 전환", flush=True)
+
     def json(self, url, params):
         while True:
             try:
@@ -138,6 +153,29 @@ def mafra_wholesale():
 
 
 # ---------------------------------------------------------------- 축산
+
+EKAPE_CONSUMER = {("4301", "22"): ("소", "등심"), ("4304", "27"): ("돼지", "삼겹살")}  # aT 축산 시계열 중 2016~2017년이 필요한 것
+
+
+def ekape_consumer():
+    """aT·KAMIS API는 축산 소매가를 2018년부터만 제공 → 2016~2017년은 축평원 일자별 소비자가격으로 채운다.
+    (2018년 이후 aT 값과 원 단위까지 같음을 확인. 응답의 '평년' 행은 버린다.) 하루 1,000회 한도라 월 조각으로 이어받기."""
+    U = "http://data.ekape.or.kr/openapi-data/service/user/grade/consumerPriceDaily"
+    ring = KeyRing()
+    for y, m in months(S, dt.date(2017, 12, 31)):
+        for (kind, item), (nm, part) in EKAPE_CONSUMER.items():
+            path = RAW / "ekape_consumer" / f"{kind}_{item}_{y}{m:02d}.parquet"
+            if path.exists():
+                continue
+            rows = []
+            for d in days(dt.date(y, m, 1), month_end(y, m)):
+                if d.weekday() >= 5:
+                    continue
+                t = ring.xml(U, dict(standYmd=d.strftime("%Y%m%d"), judgeKind=kind, itemCd=item))
+                rows += [r for r in xml_items(t) if r.get("standYmd") == d.strftime("%Y%m%d")]
+            save(pd.DataFrame(rows), path)
+        print(f"  ekape_consumer {y}-{m:02d}")
+
 
 def mafra_disease():
     path = RAW / "mafra_disease" / "all.parquet"
@@ -341,7 +379,7 @@ def holidays_kr():
 
 SOURCES = {  # 가벼운 것부터
     "holidays": holidays_kr, "ecos": ecos, "kosis": kosis, "customs": customs, "nifs": nifs,
-    "mafra_disease": mafra_disease, "recipe": recipe, "ekape": ekape, "asos": asos,
+    "mafra_disease": mafra_disease, "recipe": recipe, "ekape": ekape, "ekape_consumer": ekape_consumer, "asos": asos,
     "mafra_wholesale": mafra_wholesale, "at_price": at_price, "at_trade": at_trade,
 }
 

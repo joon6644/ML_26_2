@@ -55,6 +55,8 @@ data/processed/
 | weather_national_daily.parquet | 일 | 위 항목의 전 관측소 평균 |
 | fx_daily.parquet | 일 | usd_krw (원/달러 매매기준율) |
 | recipe_basic.parquet / recipe_ingredient.parquet | - | (후순위) MAFRA 레시피 537개: 요리명, 국가·유형(밥/국 …), 조리시간, 칼로리, 난이도 / 재료 6,104행: recipe_id, 재료명, 분량, 주재료·부재료·양념 구분 |
+| nutrition_raw_material.parquet | - | 식약처 원재료 영양성분 3,704개 (식품 대·중·소·세분류, 영양성분 약 25종, 폐기율). 품목 연결은 `data/reference/item_map.csv`의 nutrition_code |
+| nutrition_food.parquet | - | 음식(요리) 영양성분 19,495개 (후순위) |
 | macro_monthly.parquet | 월 | long 형식: table(cpi 소비자물가 식료품 품목, import_price 수입물가 농림수산·식료품, intl_commodity 국제상품가격(원유·옥수수·소맥·대두 등), fuel_price 주유소 평균가), code, name, unit, month, value |
 
 ## agri/

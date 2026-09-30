@@ -31,6 +31,10 @@ class QuotaExceeded(Exception):
     pass
 
 
+# 하루 호출 한도 초과 응답 (data.go.kr 게이트웨이는 영문, 축평원 등 기관 서버는 한글로 준다)
+QUOTA_MARKERS = ("LIMITED_NUMBER_OF_SERVICE_REQUESTS", "요청제한 횟수 초과")
+
+
 def http_get(url, params=None, safe="", retries=4, timeout=90):
     """GET 후 본문 문자열 반환. data.go.kr cond[...] 파라미터는 safe='[]:'로 대괄호를 그대로 보낸다."""
     if params:
@@ -41,14 +45,14 @@ def http_get(url, params=None, safe="", retries=4, timeout=90):
             req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
             with urllib.request.urlopen(req, timeout=timeout) as r:
                 body = r.read().decode("utf-8", "replace")
-            if "LIMITED_NUMBER_OF_SERVICE_REQUESTS" in body:
+            if any(k in body for k in QUOTA_MARKERS):
                 raise QuotaExceeded(url.split("?")[0])
             return body
         except QuotaExceeded:
             raise
         except urllib.error.HTTPError as e:
             body = e.read().decode("utf-8", "replace")
-            if "LIMITED_NUMBER_OF_SERVICE_REQUESTS" in body:
+            if any(k in body for k in QUOTA_MARKERS):
                 raise QuotaExceeded(url.split("?")[0])
             last = f"HTTP {e.code}: {body[:200]}"
             if e.code < 500 and e.code != 429:

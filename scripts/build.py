@@ -59,10 +59,27 @@ def price():
         "unit": df.unit, "unit_sz": num(df.unit_sz),
         "price": num(df.exmn_dd_prc), "price_kg_api": num(df.exmn_dd_cnvs_prc),
     }).drop_duplicates()
+    out["source"] = "aT"
+    out = pd.concat([out, ekape_consumer_rows()], ignore_index=True)
     out = out[out.date >= START].sort_values(["ctgry_cd", "item_cd", "date"])
     out["unit_g"], out["unit_g_source"] = unit_grams(out)
     out["price_kg"] = out.price / (out.unit_sz * out.unit_g / 1000)
     split_domain(out, "ctgry_cd", "price")
+
+
+def ekape_consumer_rows():
+    """축평원 일자별 소비자가격(2016~2017) → aT 가격 테이블과 같은 컬럼. aT가 제공하지 않는 기간만 채운다."""
+    e = read_all("ekape_consumer/*.parquet")
+    if e.empty:
+        return pd.DataFrame()
+    item_cd = {"4301": "4301", "4304": "4304"}
+    return pd.DataFrame({
+        "date": pd.to_datetime(e.standYmd, format="%Y%m%d"), "se_cd": "01", "se_nm": "소매",
+        "ctgry_cd": "500", "ctgry_nm": "축산물", "item_cd": e.judgeKind.map(item_cd), "item_nm": e.judgeKindNm,
+        "vrty_cd": e.itemCd, "vrty_nm": e.itemNm, "grd_cd": "", "grd_nm": np.where(e.grdNm == "구분없음", e.itemNm, e.grdNm),  # aT는 돼지 부위의 등급명을 부위명으로 씀
+        "sgg_cd": "", "sgg_nm": "전국", "mrkt_cd": "", "mrkt_nm": "축평원 소비자가격",
+        "unit": "g", "unit_sz": 100.0, "price": num(e.ntslPrc), "price_kg_api": np.nan, "source": "EKAPE",
+    })[lambda d: d.date < "2018-01-01"]
 
 
 def unit_grams(df):
@@ -309,6 +326,14 @@ def buoy():
     write(sea, "fishery", "sea_temp_daily")
 
 
+def nutrition():
+    """식약처 영양성분 표준데이터(원재료·음식) CSV → parquet. 군집화·대체재 EDA용."""
+    for name in ("nutrition_raw_material", "nutrition_food"):
+        f = RAW / "nutrition" / f"{name}.csv"
+        if f.exists():
+            write(pd.read_csv(f, dtype={"식품코드": str}, low_memory=False), "common", name)
+
+
 def recipe():
     b, i = read_all("recipe/basic.parquet"), read_all("recipe/ingredient.parquet")
     if b.empty:
@@ -317,7 +342,7 @@ def recipe():
     write(i.drop(columns="ROW_NUM").rename(columns=str.lower), "common", "recipe_ingredient")
 
 
-STEPS = [price, mafra_wholesale, at_trade, calendar, weather, ecos, customs, production, livestock, fishery, buoy, recipe]
+STEPS = [price, mafra_wholesale, at_trade, calendar, weather, ecos, customs, production, livestock, fishery, buoy, nutrition, recipe]
 
 if __name__ == "__main__":
     for step in STEPS:
