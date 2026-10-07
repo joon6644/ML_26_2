@@ -31,3 +31,14 @@ logs/
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# 만개의레시피 내용(레시피 ID·제목)은 재배포하지 않음 — 드라이브로 공유
+data/reference/menu_name_override.csv
+
+# 실험 예측 배열 (용량 큼, 재생성 가능)
+eda/tables/*.npz
+eda/tables/*.npy
+eda/tables/*.parquet
+
+# 학습 부산물
+catboost_info/
