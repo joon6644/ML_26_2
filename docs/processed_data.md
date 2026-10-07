@@ -1,6 +1,6 @@
 # 가공 데이터 (data/processed/)
 
-학습 기간 **2016-01-01 ~ 2026-09-30**. 모든 파일은 parquet이며 `pd.read_parquet(경로)`로 읽는다.
+학습 기간 **2016-01-01 ~ 2026-09-30**. **2015년은 웜업**(이동평균·전년 대비 같은 과거 창 피처 계산용)으로 함께 들어 있으니 학습에서는 제외한다. 모든 파일은 parquet이며 `pd.read_parquet(경로)`로 읽는다.
 원천별 상세·제공 기간은 [data_inventory.md](data_inventory.md), 품목·단위·관측소 기준표는 [data/reference/](../data/reference/README.md) 참고.
 
 ## 만드는 법
@@ -11,6 +11,10 @@ python scripts/build.py        # 병합 → data/processed/
 ```
 
 **수동 다운로드 1건**: 해양기상부이 수온은 API가 공공기관 전용이라 [기상자료개방포털 해양기상부이](https://data.kma.go.kr/data/sea/selectBuoyRltmList.do?pgmNo=52)에서 로그인 후 **시간자료, 지점 전체, 요소 수온·풍속**을 1년 단위로 받아 `data/raw/kma_buoy/`에 넣는다 (시간자료는 1년씩만 받아짐).
+
+## 분석용 표준 데이터셋
+
+분야별 `dataset.parquet` 하나에 가격(시계열 × 조사일)과 모든 변수를 원본 값으로 붙여 둔 표. **EDA·모델링은 이 파일부터 시작하면 된다.** 컬럼 사전: [dataset.md](dataset.md). 생성: `python scripts/build_dataset.py`
 
 ## 폴더 구조
 

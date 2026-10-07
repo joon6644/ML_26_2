@@ -11,7 +11,8 @@ ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "data" / "raw"
 PROCESSED = ROOT / "data" / "processed"
 
-START = "2016-01-01"   # 학습 기간 시작 (docs/data_inventory.md 참고)
+START = "2015-01-01"   # 수집 시작. 2015년은 웜업(과거 창 피처 계산용), 학습은 TRAIN_START부터
+TRAIN_START = "2016-01-01"
 END = "2026-09-30"
 
 

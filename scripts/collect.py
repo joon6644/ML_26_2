@@ -191,6 +191,23 @@ def mafra_disease():
     print(f"  mafra_disease: {len(rows)}")
 
 
+def ekape_weekly(start="2015-10-05", end="2024-12-29"):
+    """축평원 소 도체 경락: 주(월~일) 단위 조각 (월 단위보다 최신 신호). 주당 1회 호출, 주마다 저장해 이어받기 가능."""
+    U = "http://data.ekape.or.kr/openapi-data/service/user/grade/auct/cattle"
+    n = 0
+    for mon in pd.date_range(start, end, freq="W-MON"):
+        sun = mon + pd.Timedelta(days=6)
+        path = RAW / "ekape" / "cattle_auction_weekly" / f"{mon:%Y%m%d}.parquet"
+        if path.exists():
+            continue
+        t = http_get(U, dict(serviceKey=K, startYmd=f"{mon:%Y%m%d}", endYmd=f"{sun:%Y%m%d}", numOfRows=1000, pageNo=1))
+        save(pd.DataFrame(xml_items(t)).assign(week_start=f"{mon:%Y%m%d}"), path)
+        n += 1
+        if n % 50 == 0:
+            print(f"  ekape_weekly {mon:%Y-%m-%d} ({n}회)", flush=True)
+    print(f"  ekape_weekly 완료: 이번 실행 {n}회 호출")
+
+
 def ekape():
     """축평원: 월 단위 조각 (기간 조회 시 월 합계로 응답). 하루 1,000회 한도."""
     U = "http://data.ekape.or.kr/openapi-data/service/user"
@@ -265,7 +282,7 @@ def nifs():
     for y in range(S.year, E.year + 1):
         s, e = f"{y}0101", min(f"{y}1231", E.strftime("%Y%m%d"))
         for name, id_, key in [("coast_temp", "cooList", "NIFS_COO_API_KEY"), ("redtide", "redtideList", "NIFS_REDTIDE_API_KEY"),
-                               ("jellyfish", "jellyList", "NIFS_JELLY_API_KEY")]:
+                               ("jellyfish", "jellyList", "NIFS_JELLY_API_KEY"), ("farm_env", "femoSeaList", "NIFS_FEMO_API_KEY")]:   # farm_env: 어장환경(양식장 수질)
             path = RAW / "nifs" / name / f"{y}.parquet"
             if path.exists():
                 continue
@@ -324,11 +341,11 @@ KOSIS_TABLES = {
     "pig_census": ("101", "DT_1EO311", "Q", ["ALL", "00"], "ALL"),                      # 가축동향: 돼지 (2017 1분기~)
     "chicken_census": ("101", "DT_1EO071", "Q", ["ALL", "00"], "ALL"),                  # 가축동향: 산란계·육용계
     "fishery_production": ("101", "DT_1EW0004", "M", ["0", "ALL", "00", "0"], "T01+T05"),  # 어업생산 품종별 (월): 생산량·금액
-    "veg_leaf": ("101", "DT_1ET0028", "Y", ["00"], "ALL"),                                # 엽채류 생산 (연)
-    "veg_root": ("101", "DT_1ET0029", "Y", ["00"], "ALL"),                                # 근채류
-    "veg_seasoning": ("101", "DT_1ET0291", "Y", ["00"], "ALL"),                           # 조미채소
+    "veg_leaf": ("101", "DT_1ET0028", "Y", ["ALL"], "ALL"),                               # 엽채류 생산 (연, 시도별 - 주산지 가중치용)
+    "veg_root": ("101", "DT_1ET0029", "Y", ["ALL"], "ALL"),                                # 근채류
+    "veg_seasoning": ("101", "DT_1ET0291", "Y", ["ALL"], "ALL"),                           # 조미채소
     "food_crops": ("101", "DT_1ET0021", "Y", ["ALL"], "ALL"),                             # 식량작물
-    "fruit": ("101", "DT_1ET0292", "Y", ["00"], "ALL"),                                   # 과실
+    "fruit": ("101", "DT_1ET0292", "Y", ["ALL"], "ALL"),                                   # 과실
     "fuel_price": ("318", "TX_31802_A000", "M", ["ALL"], "ALL"),                          # 주유소 평균 판매가격 (월)
 }
 
@@ -369,6 +386,18 @@ def recipe():
         print(f"  recipe {name}: {len(rows)}")
 
 
+def foodsafety_recipe():
+    """식약처 식품안전나라 조리식품의 레시피 DB (COOKRCP01): 재료 g 분량·영양정보 포함, 1회 최대 1,000건."""
+    path = RAW / "recipe" / "foodsafety_cookrcp01.parquet"
+    if path.exists():
+        return
+    base = f"http://openapi.foodsafetykorea.go.kr/api/{ENV['FOODSAFETY_API_KEY']}/COOKRCP01/json"
+    total = int(http_json(f"{base}/1/1")["COOKRCP01"]["total_count"])
+    rows = [r for s in range(1, total + 1, 1000) for r in http_json(f"{base}/{s}/{min(s + 999, total)}")["COOKRCP01"]["row"]]
+    save(pd.DataFrame(rows), path)
+    print(f"  foodsafety_recipe: {len(rows)}")
+
+
 def holidays_kr():
     import holidays
     path = RAW / "calendar" / "holidays.parquet"
@@ -379,7 +408,7 @@ def holidays_kr():
 
 SOURCES = {  # 가벼운 것부터
     "holidays": holidays_kr, "ecos": ecos, "kosis": kosis, "customs": customs, "nifs": nifs,
-    "mafra_disease": mafra_disease, "recipe": recipe, "ekape": ekape, "ekape_consumer": ekape_consumer, "asos": asos,
+    "mafra_disease": mafra_disease, "recipe": recipe, "foodsafety_recipe": foodsafety_recipe, "ekape": ekape, "ekape_weekly": ekape_weekly, "ekape_consumer": ekape_consumer, "asos": asos,
     "mafra_wholesale": mafra_wholesale, "at_price": at_price, "at_trade": at_trade,
 }
 

@@ -300,6 +300,15 @@ def fishery():
         write(pd.DataFrame({"date": pd.to_datetime(r.day_report, format="%Y%m%d", errors="coerce"), "news_id": r.cod_news, "organism": r.nam_biology,
                             "area": r.txt_seas, "density_min": num(r.min_density), "density_max": num(r.max_density),
                             "water_temp_min": num(r.min_watertemp), "water_temp_max": num(r.max_watertemp)}), "fishery", "redtide_events")
+    fe = read_all("nifs/farm_env/*.parquet")
+    if not fe.empty:
+        vals = ["TEMP_S", "TEMP_B", "SAL_S", "SAL_B", "PH_S", "PH_B", "DO_S", "DO_B", "COD_S", "COD_B", "DIN_S", "DIN_B", "DIP_S", "DIP_B",
+                "TN_S", "TP_S", "SIL_S", "CHL_S", "CHL_B", "SS_S", "SS_B"]
+        out = pd.DataFrame({"date": pd.to_datetime(fe.DATE_Y + "-" + fe.DATE_M.str.zfill(2) + "-" + fe.DATE_D.str.zfill(2), errors="coerce"),
+                            "fishery_area": fe.FISHERY, "point": fe.LOCATION_POINT, "kind": fe.KIND, "depth": num(fe.DEPTH)})
+        for v in vals:
+            out[v.lower()] = num(fe[v]).values if v in fe else np.nan
+        write(out.sort_values("date").reset_index(drop=True), "fishery", "farm_env_survey")
     j = read_all("nifs/jellyfish/*.parquet")
     if not j.empty:
         write(pd.DataFrame({"date": pd.to_datetime(j.inpt_date, format="%Y%m%d"), "title": j.board_subject}), "fishery", "jellyfish_reports")
