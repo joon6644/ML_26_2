@@ -1,0 +1,19 @@
+﻿제거 묶음,변수 수,ΔRMSE,ΔR²,판정,제거 변수
+지면온도 제거 (평균기온과 0.99),1,-1e-05,0.0006,차이 없음 (잡음 이내),wx_ground_temp
+최고·최저기온 제거 (평균기온만),2,-2e-05,0.0007,차이 없음 (잡음 이내),"wx_temp_max, wx_temp_min"
+휘발유·등유 제거 (경유만),2,-0.00016,0.0062,차이 없음 (잡음 이내),"fuel_보통휘발유, fuel_실내등유"
+유가 3종 제거 (브렌트유만),3,0.00015,-0.0057,차이 없음 (잡음 이내),"fuel_보통휘발유, fuel_자동차용_경유, fuel_실내등유"
+물가 총지수 제거 (식료품만),1,3e-05,-0.0013,차이 없음 (잡음 이내),cpi_총지수
+최대순간풍속 제거,1,5e-05,-0.0018,차이 없음 (잡음 이내),wx_wind_gust
+1시간 최대강수 제거,1,-0.00034,0.0128,빼면 좋아짐,wx_rain_1h_max
+일사량 제거 (일조시간과 0.81),1,-0.00027,0.0104,빼면 좋아짐,wx_solar_rad
+수입액 제거 (수입량과 0.88~0.97),1,-0.00011,0.0042,차이 없음 (잡음 이내),import_usd
+요일 제거,1,4e-05,-0.0017,차이 없음 (잡음 이내),dow
+[참고] 전국 기상 전체 제거,12,8e-05,-0.0029,차이 없음 (잡음 이내),"wx_temp_avg, wx_temp_max, wx_temp_min, wx_rain, wx_rain_1h_max, wx_snow_depth, wx_humidity, wx_wind_avg, wx_wind_gust, wx_sunshine_hr, wx_solar_rad, wx_ground_temp"
+[참고] 경제 지표 전체 제거,12,0.00063,-0.024,빼면 나빠짐,"usd_krw, cpi_총지수, cpi_식료품, cpi_item, intl_원유_Brent, intl_천연가스, intl_소맥, intl_옥수수, intl_대두, fuel_보통휘발유, fuel_자동차용_경유, fuel_실내등유"
+[참고] 수입물가지수 전체 제거,6,-0.0002,0.0077,빼면 좋아짐,"impidx_축산물, impidx_도축육, impidx_가금육, impidx_낙농품, impidx_낙농및육류, impidx_육가공품및낙농품"
+품목 소비자물가 제거 (결측 97%),1,0.00011,-0.0044,차이 없음 (잡음 이내),cpi_item
+돼지 대표가 제거 (탕박 경락가와 1.00),1,2e-05,-0.0008,차이 없음 (잡음 이내),pig_auction_rep_kg
+수입물가 중복 3개 제거,3,-0.00017,0.0064,차이 없음 (잡음 이내),"impidx_낙농및육류, impidx_도축육, impidx_육가공품및낙농품"
+[참고] 가축질병 4개 전체 제거,4,-9e-05,0.0035,차이 없음 (잡음 이내),"disease_cases, disease_heads, disease_all_cases, disease_all_heads"
+[참고] 사육·경락·재고 전체 제거,8,0.00101,-0.039,빼면 나빠짐,"census_heads, census_farms, auction_heads, auction_price_kg, stock_ton, pig_auction_price_kg, pig_auction_skinned_kg, pig_auction_rep_kg"
