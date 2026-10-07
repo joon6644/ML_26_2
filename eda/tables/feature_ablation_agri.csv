@@ -1,0 +1,19 @@
+﻿제거 묶음,변수 수,ΔRMSE,ΔR²,판정,제거 변수
+지면온도 제거 (평균기온과 0.99),1,0.00118,-0.0106,빼면 나빠짐,wx_ground_temp
+최고·최저기온 제거 (평균기온만),2,0.00161,-0.0146,빼면 나빠짐,"wx_temp_max, wx_temp_min"
+휘발유·등유 제거 (경유만),2,0.00242,-0.022,빼면 나빠짐,"fuel_보통휘발유, fuel_실내등유"
+유가 3종 제거 (브렌트유만),3,0.0001,-0.0009,차이 없음 (잡음 이내),"fuel_보통휘발유, fuel_자동차용_경유, fuel_실내등유"
+물가 총지수 제거 (식료품만),1,-0.00019,0.0017,차이 없음 (잡음 이내),cpi_총지수
+최대순간풍속 제거,1,0.00059,-0.0053,차이 없음 (잡음 이내),wx_wind_gust
+1시간 최대강수 제거,1,-0.00043,0.0039,차이 없음 (잡음 이내),wx_rain_1h_max
+일사량 제거 (일조시간과 0.81),1,-0.00047,0.0042,차이 없음 (잡음 이내),wx_solar_rad
+수입액 제거 (수입량과 0.88~0.97),1,0.00097,-0.0088,빼면 나빠짐,import_usd
+요일 제거,1,0.00164,-0.0149,빼면 나빠짐,dow
+[참고] 전국 기상 전체 제거,12,0.00305,-0.0278,빼면 나빠짐,"wx_temp_avg, wx_temp_max, wx_temp_min, wx_rain, wx_rain_1h_max, wx_snow_depth, wx_humidity, wx_wind_avg, wx_wind_gust, wx_sunshine_hr, wx_solar_rad, wx_ground_temp"
+[참고] 경제 지표 전체 제거,12,0.0015,-0.0136,빼면 나빠짐,"usd_krw, cpi_총지수, cpi_식료품, cpi_item, intl_원유_Brent, intl_천연가스, intl_소맥, intl_옥수수, intl_대두, fuel_보통휘발유, fuel_자동차용_경유, fuel_실내등유"
+[참고] 수입물가지수 전체 제거,10,-0.0005,0.0045,차이 없음 (잡음 이내),"impidx_농산물, impidx_곡류, impidx_곡물및식량작물, impidx_맥류및잡곡, impidx_콩류, impidx_과일, impidx_채소및과실, impidx_과실및채소가공품, impidx_기타식용작물, impidx_유지"
+주산지 기상 7개 제거 (전국 기상과 0.95~1.00),7,0.00109,-0.0099,빼면 나빠짐,"prodarea_temp_avg, prodarea_temp_max, prodarea_temp_min, prodarea_rain, prodarea_sunshine_hr, prodarea_humidity, prodarea_wind_avg"
+MAFRA 도매가 제거 (aT 중도매가와 0.98),1,0.00128,-0.0116,빼면 나빠짐,mafra_whsl_price_kg
+가락 정산금액 제거,1,0.00098,-0.0089,빼면 나빠짐,garak_amount_krw
+수입물가 중복 6개 제거,6,0.00101,-0.0091,빼면 나빠짐,"impidx_곡류, impidx_곡물및식량작물, impidx_맥류및잡곡, impidx_과일, impidx_콩류, impidx_유지"
+[참고] 가락시장 5개 전체 제거,5,0.00339,-0.0309,빼면 나빠짐,"garak_qty_kg, garak_price_kg, garak_amount_krw, garak_n_trades, garak_top_origin_share"

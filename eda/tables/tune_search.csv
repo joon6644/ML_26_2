@@ -1,0 +1,76 @@
+﻿분야,모델,설정,기본값,RMSE,R2,방향정확도,초
+축산물,lgb,"{""num_leaves"": 63, ""min_child_samples"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.8}",True,0.05998,0.1881,0.6903,6
+축산물,lgb,"{""num_leaves"": 127, ""min_child_samples"": 100, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.8}",False,0.06005,0.1864,0.692,12
+축산물,lgb,"{""num_leaves"": 127, ""min_child_samples"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.6}",False,0.05977,0.1939,0.6908,7
+축산물,lgb,"{""num_leaves"": 127, ""min_child_samples"": 20, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.6}",False,0.05959,0.1988,0.6984,12
+축산물,lgb,"{""num_leaves"": 63, ""min_child_samples"": 100, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.8}",False,0.06029,0.1797,0.6903,5
+축산물,lgb,"{""num_leaves"": 127, ""min_child_samples"": 100, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.8}",False,0.06027,0.1803,0.6889,7
+축산물,lgb,"{""num_leaves"": 63, ""min_child_samples"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.6}",False,0.05975,0.1943,0.6947,5
+축산물,lgb,"{""num_leaves"": 31, ""min_child_samples"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.6}",False,0.05993,0.1896,0.6932,3
+축산물,lgb,"{""num_leaves"": 63, ""min_child_samples"": 100, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.8}",False,0.05995,0.1888,0.6912,8
+축산물,xgb,"{""max_depth"": 7, ""min_child_weight"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.8}",True,0.05998,0.1881,0.694,3
+축산물,xgb,"{""max_depth"": 7, ""min_child_weight"": 20, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.8}",False,0.05974,0.1945,0.7003,5
+축산물,xgb,"{""max_depth"": 7, ""min_child_weight"": 100, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.6}",False,0.05971,0.1954,0.696,3
+축산물,xgb,"{""max_depth"": 7, ""min_child_weight"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.6}",False,0.05967,0.1964,0.6995,3
+축산물,xgb,"{""max_depth"": 8, ""min_child_weight"": 100, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.8}",False,0.05995,0.1889,0.6948,5
+축산물,xgb,"{""max_depth"": 6, ""min_child_weight"": 20, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.8}",False,0.05964,0.1973,0.699,4
+축산물,xgb,"{""max_depth"": 8, ""min_child_weight"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.8}",False,0.05999,0.1879,0.6945,4
+축산물,xgb,"{""max_depth"": 7, ""min_child_weight"": 20, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.6}",False,0.05948,0.2016,0.701,5
+축산물,xgb,"{""max_depth"": 6, ""min_child_weight"": 100, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.8}",False,0.05987,0.191,0.6958,3
+축산물,cat,"{""depth"": 8, ""lr_n"": [0.1, 800], ""l2_leaf_reg"": 3}",True,0.05977,0.1938,0.6956,56
+축산물,cat,"{""depth"": 6, ""lr_n"": [0.05, 1500], ""l2_leaf_reg"": 10}",False,0.05949,0.2015,0.7027,64
+축산물,cat,"{""depth"": 8, ""lr_n"": [0.05, 1500], ""l2_leaf_reg"": 3}",False,0.05958,0.1989,0.6983,108
+축산물,cat,"{""depth"": 6, ""lr_n"": [0.1, 800], ""l2_leaf_reg"": 3}",False,0.05961,0.1983,0.6979,35
+축산물,cat,"{""depth"": 6, ""lr_n"": [0.05, 1500], ""l2_leaf_reg"": 3}",False,0.05958,0.1989,0.6992,65
+축산물,cat,"{""depth"": 6, ""lr_n"": [0.1, 800], ""l2_leaf_reg"": 10}",False,0.05944,0.2026,0.702,34
+축산물,cat,"{""depth"": 8, ""lr_n"": [0.1, 800], ""l2_leaf_reg"": 10}",False,0.06003,0.1868,0.6915,58
+축산물,cat,"{""depth"": 8, ""lr_n"": [0.05, 1500], ""l2_leaf_reg"": 10}",False,0.05951,0.2009,0.7017,108
+수산물,lgb,"{""num_leaves"": 63, ""min_child_samples"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.8}",True,0.0809,0.2414,0.7141,15
+수산물,lgb,"{""num_leaves"": 63, ""min_child_samples"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.6}",False,0.0808,0.2432,0.7126,15
+수산물,lgb,"{""num_leaves"": 127, ""min_child_samples"": 20, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.6}",False,0.08067,0.2457,0.7145,34
+수산물,lgb,"{""num_leaves"": 63, ""min_child_samples"": 100, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.8}",False,0.08092,0.241,0.711,14
+수산물,lgb,"{""num_leaves"": 127, ""min_child_samples"": 20, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.8}",False,0.08089,0.2415,0.7131,36
+수산물,lgb,"{""num_leaves"": 127, ""min_child_samples"": 100, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.6}",False,0.08073,0.2445,0.7121,19
+수산물,lgb,"{""num_leaves"": 31, ""min_child_samples"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.6}",False,0.08118,0.2361,0.7123,11
+수산물,lgb,"{""num_leaves"": 31, ""min_child_samples"": 100, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.8}",False,0.08115,0.2366,0.7145,17
+수산물,lgb,"{""num_leaves"": 63, ""min_child_samples"": 100, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.6}",False,0.08074,0.2443,0.7133,22
+수산물,xgb,"{""max_depth"": 7, ""min_child_weight"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.8}",True,0.08393,0.1835,0.7025,11
+수산물,xgb,"{""max_depth"": 8, ""min_child_weight"": 20, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.6}",False,0.0831,0.1995,0.7033,18
+수산물,xgb,"{""max_depth"": 7, ""min_child_weight"": 100, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.6}",False,0.08166,0.227,0.7079,16
+수산물,xgb,"{""max_depth"": 6, ""min_child_weight"": 100, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.6}",False,0.08184,0.2236,0.7068,14
+수산물,xgb,"{""max_depth"": 7, ""min_child_weight"": 100, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.6}",False,0.08205,0.2197,0.7042,10
+수산물,xgb,"{""max_depth"": 6, ""min_child_weight"": 20, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.8}",False,0.08343,0.1932,0.7044,15
+수산물,xgb,"{""max_depth"": 7, ""min_child_weight"": 20, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.8}",False,0.08362,0.1894,0.703,16
+수산물,xgb,"{""max_depth"": 8, ""min_child_weight"": 100, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.8}",False,0.08225,0.2158,0.7048,17
+수산물,xgb,"{""max_depth"": 8, ""min_child_weight"": 20, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.8}",False,0.08382,0.1856,0.704,18
+수산물,cat,"{""depth"": 8, ""lr_n"": [0.1, 800], ""l2_leaf_reg"": 3}",True,0.08118,0.236,0.7081,130
+수산물,cat,"{""depth"": 6, ""lr_n"": [0.05, 1500], ""l2_leaf_reg"": 3}",False,0.08177,0.225,0.7095,161
+수산물,cat,"{""depth"": 8, ""lr_n"": [0.05, 1500], ""l2_leaf_reg"": 10}",False,0.08068,0.2455,0.7122,244
+수산물,cat,"{""depth"": 6, ""lr_n"": [0.1, 800], ""l2_leaf_reg"": 3}",False,0.08165,0.2272,0.7066,87
+수산물,cat,"{""depth"": 6, ""lr_n"": [0.1, 800], ""l2_leaf_reg"": 10}",False,0.08133,0.2332,0.7096,86
+수산물,cat,"{""depth"": 8, ""lr_n"": [0.05, 1500], ""l2_leaf_reg"": 3}",False,0.08098,0.2399,0.7107,237
+수산물,cat,"{""depth"": 8, ""lr_n"": [0.1, 800], ""l2_leaf_reg"": 10}",False,0.08107,0.2382,0.7076,128
+수산물,cat,"{""depth"": 6, ""lr_n"": [0.05, 1500], ""l2_leaf_reg"": 10}",False,0.08118,0.236,0.7115,160
+농산물,lgb,"{""num_leaves"": 63, ""min_child_samples"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.8}",True,0.12545,0.4444,0.7538,54
+농산물,lgb,"{""num_leaves"": 31, ""min_child_samples"": 100, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.6}",False,0.12521,0.4465,0.7535,49
+농산물,lgb,"{""num_leaves"": 127, ""min_child_samples"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.8}",False,0.12616,0.4381,0.753,63
+농산물,lgb,"{""num_leaves"": 127, ""min_child_samples"": 20, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.6}",False,0.12466,0.4514,0.7553,100
+농산물,lgb,"{""num_leaves"": 63, ""min_child_samples"": 20, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.6}",False,0.12462,0.4517,0.7552,88
+농산물,lgb,"{""num_leaves"": 63, ""min_child_samples"": 100, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.8}",False,0.1254,0.4449,0.7544,54
+농산물,lgb,"{""num_leaves"": 127, ""min_child_samples"": 20, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.8}",False,0.12506,0.4478,0.7555,102
+농산물,lgb,"{""num_leaves"": 31, ""min_child_samples"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.6}",False,0.12578,0.4414,0.7532,50
+농산물,lgb,"{""num_leaves"": 63, ""min_child_samples"": 20, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.8}",False,0.12502,0.4482,0.7556,87
+농산물,xgb,"{""max_depth"": 7, ""min_child_weight"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.8}",True,0.12618,0.4379,0.7545,71
+농산물,xgb,"{""max_depth"": 6, ""min_child_weight"": 20, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.6}",False,0.12526,0.4461,0.7563,98
+농산물,xgb,"{""max_depth"": 6, ""min_child_weight"": 20, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.8}",False,0.12621,0.4376,0.7546,100
+농산물,xgb,"{""max_depth"": 8, ""min_child_weight"": 100, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.6}",False,0.12458,0.452,0.7557,126
+농산물,xgb,"{""max_depth"": 8, ""min_child_weight"": 20, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.8}",False,0.12545,0.4444,0.7548,130
+농산물,xgb,"{""max_depth"": 7, ""min_child_weight"": 100, ""lr_n"": [0.03, 1000], ""colsample_bytree"": 0.6}",False,0.12441,0.4535,0.7576,113
+농산물,xgb,"{""max_depth"": 6, ""min_child_weight"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.8}",False,0.12634,0.4365,0.7559,63
+농산물,xgb,"{""max_depth"": 8, ""min_child_weight"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.8}",False,0.12581,0.4412,0.7539,80
+농산물,xgb,"{""max_depth"": 8, ""min_child_weight"": 20, ""lr_n"": [0.05, 600], ""colsample_bytree"": 0.6}",False,0.12581,0.4412,0.7528,78
+농산물,cat,"{""depth"": 8, ""lr_n"": [0.1, 800], ""l2_leaf_reg"": 3}",True,0.12637,0.4362,0.745,556
+농산물,cat,"{""depth"": 8, ""lr_n"": [0.1, 800], ""l2_leaf_reg"": 10}",False,0.12634,0.4365,0.7459,556
+농산물,cat,"{""depth"": 6, ""lr_n"": [0.1, 800], ""l2_leaf_reg"": 3}",False,0.12612,0.4384,0.7484,411
+농산물,cat,"{""depth"": 8, ""lr_n"": [0.05, 1500], ""l2_leaf_reg"": 10}",False,0.12547,0.4442,0.7489,1031
+농산물,cat,"{""depth"": 6, ""lr_n"": [0.05, 1500], ""l2_leaf_reg"": 3}",False,0.12551,0.4438,0.7496,759

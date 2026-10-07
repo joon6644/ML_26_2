@@ -1,0 +1,4 @@
+﻿분야,제거,피처 수,시드,RMSE 현재,RMSE 제거 후,ΔRMSE,판정
+농산물,"n_obs28, nat_n_obs28, garak_amount_krw, intl_옥수수, cultivated_area_ha",48 → 43,0,0.12838,0.12838,-0.0,차이 없음
+축산물,"n_obs28, nat_n_obs28",38 → 36,"0,1,2",0.0619,0.06198,8e-05,차이 없음
+수산물,"n_obs28, nat_n_obs28, intl_천연가스, wx_temp_avg, farm_chl_s, impidx_냉동수산물_냉동건조수산물",49 → 43,0,0.08321,0.08483,0.00162,나빠짐

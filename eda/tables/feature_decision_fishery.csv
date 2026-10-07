@@ -1,0 +1,83 @@
+﻿피처,구분,결측 %,시작,ρ(y),SHAP %,가장 비슷한 피처,그 ρ
+dev_last,공통,0.0,2015-01,0.228,9.14,r7,0.35
+yoy,공통,6.8,2015-12,-0.063,9.06,r91,0.41
+price_kg,공통,0.0,2015-01,-0.058,8.43,whsl_price_kg,0.92
+r28,공통,3.7,2015-02,-0.054,6.02,r91,0.47
+item_cd,공통,0.0,2015-01,,5.61,,
+r7,공통,2.3,2015-01,-0.001,5.32,r28,0.41
+r91,공통,7.0,2015-04,-0.025,4.01,r28,0.47
+cpi_item,공통,35.8,2015-02,-0.101,3.32,mafra_whsl_price_kg,0.51
+ly_change,공통,8.8,2015-12,0.074,3.19,yoy,0.19
+cpi_식료품,공통,0.0,2015-02,-0.03,2.76,cpi_총지수,0.97
+vol28,공통,1.9,2015-01,0.044,2.16,farmitem_ss_s,-0.17
+cpi_총지수,공통,0.0,2015-02,-0.034,1.97,cpi_식료품,0.97
+import_kg,공통,4.9,2015-02,0.024,1.75,import_usd,0.88
+export_kg,공통,4.9,2015-02,0.006,1.62,import_kg,0.51
+se_nm,공통,0.0,2015-01,,1.09,,
+fuel_실내등유,공통,0.0,2015-02,-0.022,0.97,fuel_자동차용_경유,0.91
+usd_krw,공통,0.0,2015-01,0.029,0.95,impidx_수산가공품,0.64
+n_obs28,공통,0.0,2015-01,-0.013,0.95,redtide_density_max,0.23
+fuel_보통휘발유,공통,0.0,2015-02,-0.024,0.91,fuel_자동차용_경유,0.96
+intl_천연가스,공통,0.0,2015-02,-0.011,0.83,intl_원유_Brent,0.65
+woy,공통,0.0,2015-01,0.011,0.82,buoy_temp_max,0.63
+import_usd,공통,4.9,2015-02,0.02,0.79,import_kg,0.88
+food_group,공통,0.0,2015-01,,0.78,,
+intl_원유_Brent,공통,0.0,2015-02,-0.034,0.68,fuel_자동차용_경유,0.93
+fuel_자동차용_경유,공통,0.0,2015-02,-0.024,0.51,fuel_보통휘발유,0.96
+wx_temp_avg,공통,0.0,2015-01,-0.033,0.44,wx_ground_temp,0.99
+wx_ground_temp,공통,0.0,2015-01,-0.032,0.44,wx_temp_avg,0.99
+wx_temp_min,공통,0.0,2015-01,-0.032,0.4,wx_temp_avg,0.99
+wx_temp_max,공통,0.0,2015-01,-0.032,0.18,wx_ground_temp,0.99
+wx_rain,공통,0.0,2015-01,-0.008,0.15,wx_rain_1h_max,0.93
+wx_humidity,공통,0.0,2015-01,-0.018,0.14,wx_temp_min,0.71
+wx_solar_rad,공통,0.0,2015-01,-0.025,0.14,wx_sunshine_hr,0.8
+wx_sunshine_hr,공통,0.0,2015-01,-0.001,0.12,wx_solar_rad,0.8
+wx_rain_1h_max,공통,48.9,2015-04,-0.018,0.1,wx_rain,0.93
+wx_wind_avg,공통,0.0,2015-01,0.003,0.09,wx_wind_gust,0.94
+wx_wind_gust,공통,0.0,2015-01,0.008,0.08,wx_wind_avg,0.94
+dow,공통,0.0,2015-01,-0.002,0.05,jellyfish_reports,0.25
+wx_snow_depth,공통,80.9,2015-01,0.005,0.04,wx_rain_1h_max,-0.76
+farmitem_do_b,분야 전용,78.1,2015-03,-0.005,2.15,farmitem_do_s,0.94
+catch_value_kkrw,분야 전용,5.5,2015-03,0.032,1.84,catch_ton,0.71
+whsl_price_kg,분야 전용,14.2,2015-01,-0.028,1.56,mafra_whsl_price_kg,0.98
+mafra_whsl_price_kg,분야 전용,33.5,2016-01,-0.06,1.38,whsl_price_kg,0.98
+impidx_수산가공품,분야 전용,0.0,2015-02,-0.001,1.29,impidx_수산물가공품,1.0
+catch_ton,분야 전용,5.5,2015-03,0.03,1.19,catch_value_kkrw,0.71
+farm_do_s,분야 전용,0.0,2015-03,-0.057,1.17,farm_do_b,0.91
+days_to_closed_start,분야 전용,41.8,2015-01,-0.027,1.16,farmitem_temp_s,0.65
+farm_cod_s,분야 전용,0.0,2015-03,0.038,0.82,farm_temp_b,0.55
+farm_do_b,분야 전용,0.0,2015-03,-0.054,0.81,farm_temp_s,-0.93
+sea_temp_west,분야 전용,0.3,2016-01,-0.016,0.66,sea_temp_south,0.98
+farm_din_s,분야 전용,0.0,2015-03,-0.033,0.65,farm_dip_s,0.78
+farmitem_cod_s,분야 전용,78.1,2015-03,-0.006,0.61,farm_cod_s,0.5
+impidx_신선수산물,분야 전용,0.0,2015-02,0.052,0.59,cpi_총지수,-0.67
+coast_temp_avg,분야 전용,0.0,2015-01,-0.014,0.57,sea_temp_west,0.97
+farm_chl_s,분야 전용,0.0,2015-03,0.037,0.57,farmitem_chl_s,0.49
+farm_temp_s,분야 전용,0.0,2015-03,0.048,0.56,farm_temp_b,0.98
+farm_dip_s,분야 전용,0.0,2015-03,-0.016,0.56,farm_din_s,0.78
+sea_temp_east,분야 전용,0.3,2016-01,-0.009,0.51,sea_temp_south,0.98
+sea_temp_south,분야 전용,0.3,2016-01,-0.014,0.5,buoy_temp_max,0.98
+farm_sal_s,분야 전용,0.0,2015-03,-0.021,0.5,farmitem_temp_s,-0.75
+impidx_수산물,분야 전용,0.0,2015-02,0.04,0.5,impidx_냉동수산물,0.88
+impidx_냉동수산물,분야 전용,0.0,2015-02,0.014,0.49,impidx_냉동건조수산물,1.0
+farm_temp_b,분야 전용,0.0,2015-03,0.049,0.4,farm_temp_s,0.98
+impidx_수산물가공품,분야 전용,0.0,2015-02,-0.001,0.38,impidx_수산가공품,1.0
+buoy_temp_max,분야 전용,0.3,2016-01,-0.009,0.33,sea_temp_south,0.98
+farm_ss_s,분야 전용,0.0,2015-03,0.015,0.33,fuel_실내등유,-0.64
+farmitem_chl_s,분야 전용,78.1,2015-03,-0.044,0.28,farm_chl_s,0.49
+farmitem_temp_s,분야 전용,78.1,2015-03,0.046,0.24,farmitem_temp_b,0.99
+coast_temp_n_stations,분야 전용,0.0,2015-01,0.026,0.19,cpi_총지수,-0.83
+farmitem_sal_s,분야 전용,78.1,2015-03,-0.03,0.17,farm_sal_s,0.61
+farmitem_dip_s,분야 전용,78.1,2015-03,-0.101,0.15,farmitem_din_s,0.78
+farmitem_ss_s,분야 전용,78.1,2015-03,0.076,0.15,farm_ss_s,0.57
+farmitem_do_s,분야 전용,78.1,2015-03,-0.006,0.13,farmitem_do_b,0.94
+buoy_wind_avg,분야 전용,0.3,2016-01,0.023,0.12,wx_wind_avg,0.76
+impidx_냉동건조수산물,분야 전용,0.0,2015-02,0.014,0.12,impidx_냉동수산물,1.0
+farmitem_din_s,분야 전용,78.1,2015-03,-0.045,0.11,farmitem_dip_s,0.78
+closed_season,분야 전용,17.2,2015-01,0.004,0.09,closed_window,1.0
+redtide_reports,분야 전용,0.0,2015-01,0.006,0.03,redtide_areas,0.97
+redtide_density_max,분야 전용,88.7,2015-03,-0.002,0.03,woy,-0.44
+closed_window,분야 전용,0.0,2015-01,-0.004,0.03,closed_season,1.0
+farmitem_temp_b,분야 전용,78.1,2015-03,0.032,0.03,farmitem_temp_s,0.99
+jellyfish_reports,분야 전용,0.0,2015-01,0.001,0.02,sea_temp_east,0.29
+redtide_areas,분야 전용,0.0,2015-01,0.005,0.01,redtide_reports,0.97

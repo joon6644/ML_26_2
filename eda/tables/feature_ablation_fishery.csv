@@ -1,0 +1,23 @@
+﻿제거 묶음,변수 수,ΔRMSE,ΔR²,판정,제거 변수
+지면온도 제거 (평균기온과 0.99),1,0.00115,-0.0361,빼면 나빠짐,wx_ground_temp
+최고·최저기온 제거 (평균기온만),2,0.00076,-0.0237,빼면 나빠짐,"wx_temp_max, wx_temp_min"
+휘발유·등유 제거 (경유만),2,0.0009,-0.0281,빼면 나빠짐,"fuel_보통휘발유, fuel_실내등유"
+유가 3종 제거 (브렌트유만),3,-1e-05,0.0004,차이 없음 (잡음 이내),"fuel_보통휘발유, fuel_자동차용_경유, fuel_실내등유"
+물가 총지수 제거 (식료품만),1,0.00041,-0.0128,빼면 나빠짐,cpi_총지수
+최대순간풍속 제거,1,0.00031,-0.0097,차이 없음 (잡음 이내),wx_wind_gust
+1시간 최대강수 제거,1,0.00063,-0.0197,빼면 나빠짐,wx_rain_1h_max
+일사량 제거 (일조시간과 0.81),1,0.00047,-0.0146,빼면 나빠짐,wx_solar_rad
+수입액 제거 (수입량과 0.88~0.97),1,0.00026,-0.008,차이 없음 (잡음 이내),import_usd
+요일 제거,1,0.00031,-0.0096,차이 없음 (잡음 이내),dow
+[참고] 전국 기상 전체 제거,12,0.00027,-0.0084,차이 없음 (잡음 이내),"wx_temp_avg, wx_temp_max, wx_temp_min, wx_rain, wx_rain_1h_max, wx_snow_depth, wx_humidity, wx_wind_avg, wx_wind_gust, wx_sunshine_hr, wx_solar_rad, wx_ground_temp"
+[참고] 경제 지표 전체 제거,9,-0.0012,0.0368,빼면 좋아짐,"usd_krw, cpi_총지수, cpi_식료품, cpi_item, intl_원유_Brent, intl_천연가스, fuel_보통휘발유, fuel_자동차용_경유, fuel_실내등유"
+[참고] 수입물가지수 전체 제거,6,0.00163,-0.051,빼면 나빠짐,"impidx_수산물, impidx_신선수산물, impidx_냉동수산물, impidx_냉동건조수산물, impidx_수산가공품, impidx_수산물가공품"
+MAFRA 도매가 제거 (aT 중도매가와 0.99),1,0.00052,-0.0161,빼면 나빠짐,mafra_whsl_price_kg
+수입물가 중복 2개 제거,2,-0.00023,0.0071,차이 없음 (잡음 이내),"impidx_냉동건조수산물, impidx_수산물가공품"
+금어기 여부 제거 (가능 기간과 1.00),1,0.00054,-0.017,빼면 나빠짐,closed_season
+적조 해역 수 제거 (보고 수와 0.98),1,0.00049,-0.0152,빼면 나빠짐,redtide_areas
+부이최고·연안수온·관측소수 제거,3,-0.00025,0.0076,차이 없음 (잡음 이내),"buoy_temp_max, coast_temp_avg, coast_temp_n_stations"
+어장 저층수온 2개 제거,2,0.00064,-0.0199,빼면 나빠짐,"farm_temp_b, farmitem_temp_b"
+[참고] 품목 어장환경 10개 전체 제거,10,-0.00026,0.0079,차이 없음 (잡음 이내),"farmitem_temp_s, farmitem_temp_b, farmitem_sal_s, farmitem_do_s, farmitem_do_b, farmitem_cod_s, farmitem_din_s, farmitem_dip_s, farmitem_chl_s, farmitem_ss_s"
+[참고] 전체 어장환경 10개 전체 제거,10,0.00063,-0.0196,빼면 나빠짐,"farm_temp_s, farm_temp_b, farm_sal_s, farm_do_s, farm_do_b, farm_cod_s, farm_din_s, farm_dip_s, farm_chl_s, farm_ss_s"
+[참고] 적조·해파리 4개 전체 제거,4,-0.00019,0.0058,차이 없음 (잡음 이내),"redtide_reports, redtide_areas, redtide_density_max, jellyfish_reports"
