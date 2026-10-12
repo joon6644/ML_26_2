@@ -1,0 +1,12 @@
+# 시연·예측용 (다른 컴퓨터) — 저장된 모델(joblib)을 열려면 학습한 컴퓨터와 같은 버전이어야 함
+#   pip install -r requirements-demo.txt
+scikit-learn==1.8.0
+lightgbm==4.6.0
+pandas==2.3.3
+pyarrow==23.0.1
+numpy==2.4.2
+joblib==1.5.3
+matplotlib==3.10.8
+nbformat
+nbclient
+ipykernel
