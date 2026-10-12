@@ -2,7 +2,7 @@
 #   python eda/74_rebuild_after_rename.py frames_v1   # data/processed/{분야}/model_frame_v1 (검증 분할: 정규화 ~2022-12-01)
 #   python eda/74_rebuild_after_rename.py frames_test # data/processed/{분야}/model_frame_test (테스트 분할: 정규화 ~2024-12-01)
 #   python eda/74_rebuild_after_rename.py clean       # data/processed_R (하루짜리 튐 → 전날 값) model_frame_test + model_frame_v1
-#   python eda/74_rebuild_after_rename.py val         # 검증 예측 (LightGBM, ~2022-12-01 정제 데이터 학습 → 2023~24 원래 데이터) → eda/tables/final_val_preds_{분야}.npz
+#   python eda/74_rebuild_after_rename.py val         # 검증 예측 (LightGBM, 원래 값 입력, ~2022-12-01 정제 데이터 학습 → 2023~24 원래 데이터) → eda/tables/final_val_preds_{분야}.npz
 # 앞뒤 단계: scripts/build_dataset.py → build_features.py → (이 스크립트) → scripts/build_model_input.py → demo/0_train_models.py → eda/72 → eda/73
 import importlib.util, json, shutil, sys
 from pathlib import Path
@@ -63,8 +63,9 @@ if __name__ == "__main__":
         bd, bfe = o68.bd, o68.bfe
         bd.P = bfe.P = P0                                                 # 원래 경로로 되돌림
         frames(PR, VAL, "model_frame_v1")                                 # 검증용 정제 학습 표
-    elif step == "val":
-        dv.cs.rm.prep = prep_nofill
+    elif step == "val":                                                  # 서비스 모델과 같은 입력 (원래 값, MinMax 없음 — 2026-10-12)
+        sys.path.insert(0, str(ROOT / "demo"))
+        from shared import features
         for d in NAMES:
             O = pd.read_parquet(P0 / d / "model_frame_v1.parquet")
             E = O[(O.date >= VAL[2]) & (O.date <= VAL[3]) & O.y.notna()]
@@ -73,12 +74,11 @@ if __name__ == "__main__":
             num = json.loads((P0 / d / "model_frame_v1.json").read_text(encoding="utf-8"))["num"]
             cats = dv.base_sets(NAMES[d])[1]
             df = pd.concat([R, E[R.columns]], ignore_index=True)
-            df.attrs["scope"] = {c[8:]: df[c].values.astype(bool) for c in df.columns if c.startswith("_scope__")}
             tr = np.r_[np.ones(len(R), bool), np.zeros(len(E), bool)]
             yv = df.y.values.astype(float)
             yt = np.clip(yv[tr], *np.nanquantile(yv[tr], (0.01, 0.99)))
             mono = {} if d == "agri" else {k: v for k, v in dv.MONO[d].items() if k in num and k not in LEVEL}
-            X = dv.matrix(df, num, cats, tr, 42)
+            X = features(df, num, cats, seed=42)
             pl = {**dv.LGB_BASE, "random_state": 42}
             if mono:
                 pl.update(monotone_constraints=[mono.get(c, 0) for c in X.columns], monotone_constraints_method="advanced")

@@ -48,16 +48,28 @@ def label(v):
     return np.where(v > BAND, 1, np.where(v < -BAND, -1, 0))
 
 
+OUT_OF_SCOPE = -1e9   # 대상 밖 품목(예: 양파 행의 가축 질병)의 값 — 어떤 실제 값보다 작아 트리가 "해당 없음"으로 따로 나눔
+
+
+def features(df, num, cats, categories=None, seed=42):
+    """LightGBM 입력: 원래 값 그대로 (트리는 값의 순서만 보므로 스케일 변환 없음), 결측은 채우지 않음,
+    대상 밖 품목 = OUT_OF_SCOPE, 범주형. 피처 순서는 실험 때처럼 시드로 섞음 (colsample 재현용)."""
+    num = sorted(num)
+    num = [num[i] for i in np.random.default_rng(seed).permutation(len(num))]
+    X = df[num].astype("float32").replace([np.inf, -np.inf], np.nan)
+    for c in num:
+        s = f"_scope__{c}"
+        if s in df:
+            X.loc[~df[s].astype(bool).values, c] = OUT_OF_SCOPE
+    for c in cats:
+        cat = categories[c] if categories else sorted(df[c].astype(str).unique())
+        X[c] = df[c].astype(str).astype(pd.CategoricalDtype(cat))
+    return X
+
+
 def transform(df, meta):
-    """학습 때와 같은 전처리: 결측은 그대로, MinMax(학습 구간), 대상 밖 품목=-1, 범주형."""
-    num = meta["num_order"]
-    X = df[num].astype("float32").replace([np.inf, -np.inf], np.nan)          # 결측은 채우지 않음
-    X = pd.DataFrame(meta["scaler"].transform(X).astype("float32"), columns=num, index=df.index)
-    for c in meta["scope"]:
-        if c in X:
-            X.loc[~df[f"_scope__{c}"].astype(bool).values, c] = -1.0
-    for c in meta["cats"]:
-        X[c] = df[c].astype(str).astype(pd.CategoricalDtype(meta["categories"][c]))
+    """예측 때 입력: 학습 때와 같은 features() (같은 피처 순서·범주)."""
+    X = features(df, meta["num"], meta["cats"], meta["categories"], meta["seed"])
     return X[meta["columns"]]
 
 
