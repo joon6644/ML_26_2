@@ -11,7 +11,7 @@
 import numpy as np
 import pandas as pd
 
-from shared import NAMES, P, ROOT, label
+from shared import NAMES, P, ROOT, label, show
 
 T = ROOT / "eda" / "tables"
 DECISIONS = [
@@ -78,20 +78,20 @@ def seeds():
 
 
 if __name__ == "__main__":
-    pd.set_option("display.width", 220)
-    pd.set_option("display.max_colwidth", 60)
     print("\n■ 1. 채택·기각한 실험 (가설을 먼저 적고, 시드 잡음의 2배를 넘는 개선만 채택)\n")
-    print(pd.DataFrame(DECISIONS, columns=["시도", "가설", "결과", "판단"]).to_string(index=False))
+    for try_, hypo, result, verdict in DECISIONS:                       # 글이 길어 표 대신 항목별로
+        print(f"  ● {try_}  →  {verdict}\n      가설: {hypo}\n      결과: {result}\n")
 
     print("\n■ 2. 검증(2023~24)에서 고른 구성이 처음 보는 테스트(2025~26)에서도 유지되나\n")
     e = pd.read_csv(T / "final_eval.csv")
     e = e[e.모델 == "LightGBM"].pivot(index="분야", columns="구간", values=["R²", "방향 정확도"])
-    print(e.reindex(["농산물", "축산물", "수산물"]).to_string())
+    e.columns = [f"{m} {span.split()[0]}" for m, span in e.columns]       # ('R²', '검증 (2023~24)') → 'R² 검증'
+    show(e.reindex(["농산물", "축산물", "수산물"]), index=True)
 
     print("\n■ 3. 연 단위 전진 검증 — 해마다 R²는 흔들려도 방향은 유지되나 (이전 구성 기준: 분야별 학습 처리·정제 없음·결측 평균 채움, LightGBM 예측)\n")
-    print(walk_forward().to_string(index=False))
+    show(walk_forward())
 
     print("\n■ 4. 시드 42·43·44 — 운 좋은 시드가 아닌가 (검증 2023~24, 이전 구성 기준, LightGBM 예측)\n")
-    print(seeds().to_string(index=False))
+    show(seeds())
 
     print("\n■ 참고: R² 상한 — 품목 공통 움직임을 완벽히 맞혀도 지역 잡음 때문에 농 0.71 / 축 0.47 / 수 0.27이 한계")
