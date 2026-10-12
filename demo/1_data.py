@@ -7,7 +7,7 @@ import sys
 
 import pandas as pd
 
-from shared import NAMES, P, ROOT, domain, load_frame
+from shared import NAMES, P, ROOT, domain, load_frame, show
 
 RAW = ROOT / "data" / "raw"
 SOURCES = [   # (data/raw 폴더, 출처, 내용)
@@ -32,7 +32,7 @@ def overview():
     for folder, src, desc in SOURCES:
         files = [f for f in (RAW / folder).rglob("*") if f.is_file()] if (RAW / folder).exists() else []
         rows.append({"출처": src, "내용": desc, "파일 수": len(files), "용량(MB)": round(sum(f.stat().st_size for f in files) / 1e6)})
-    print(pd.DataFrame(rows).to_string(index=False))
+    show(pd.DataFrame(rows))
 
     print("\n■ 2. 가공 흐름\n")
     print("  data/raw (API 원본)\n"
@@ -49,15 +49,16 @@ def overview():
         rows.append({"분야": NAMES[d], "행": f"{len(df):,}", "품목": df.item_nm.nunique(), "지역": df[df.is_nat == 0].sgg_nm.nunique(),
                      "소매/중도매": "/".join(sorted(df.se_nm.unique())), "기간": f"{df.date.min():%Y-%m} ~ {df.date.max():%Y-%m}",
                      "학습 행": f"{(df.split == '학습').sum():,}", "테스트 행": f"{(df.split == '테스트').sum():,}", "수치 피처": len(num)})
-    print(pd.DataFrame(rows).to_string(index=False))
+    show(pd.DataFrame(rows))
     print("\n  한 행 = 품목·품종·등급 × 소매/중도매 × 지역(또는 '전국') × 날짜")
     print("  타깃 y = 향후 28일 평균 가격 / 최근 7일 평균 가격 − 1  (4주 뒤 평균이 지금보다 몇 % 변하나)")
 
     print("\n■ 4. 샘플 — 양파 · 서울 · 소매\n")
     s = pd.read_parquet(P / "agri" / "model_input.parquet", filters=[("item_nm", "==", "양파"), ("sgg_nm", "==", "서울"), ("se_nm", "==", "소매")])
     cols = ["date", "split", "item_nm", "sgg_nm", "base", "y", "r7", "r28", "yoy", "premium", "garak_price_kg", "wx_rain_14d"]
-    print(s[cols].dropna().tail(5).round(3).rename(columns={"base": "최근7일평균", "r7": "1주변화", "r28": "4주변화", "yoy": "전년대비",
-                                                    "premium": "지역프리미엄", "garak_price_kg": "가락경락가", "wx_rain_14d": "2주강수"}).to_string(index=False))
+    s = s[cols].dropna().tail(5).round(3).assign(date=lambda x: x.date.dt.strftime("%Y-%m-%d"))
+    show(s.rename(columns={"date": "날짜", "split": "구분", "item_nm": "품목", "sgg_nm": "지역", "base": "최근7일평균", "r7": "1주변화", "r28": "4주변화", "yoy": "전년대비",
+                           "premium": "지역프리미엄", "garak_price_kg": "가락경락가", "wx_rain_14d": "2주강수"}))
 
 
 def features(nm):
@@ -65,7 +66,7 @@ def features(nm):
     f = f[f.분야 == nm]
     print(f"\n■ {nm} 모델 피처 ({len(f)}개, data/reference/feature_selection.csv)\n")
     pd.set_option("display.max_colwidth", 60)
-    print(f[["그룹", "feature", "한글명", "기대 방향"]].to_string(index=False))
+    show(f[["그룹", "feature", "한글명", "기대 방향"]])
     extra = {"농산물": "도매-소매 괴리 이상치, 최근 2주 강수 누적, 최근 2주 일조·기온의 평년 대비 (+4)",
              "수산물": "물가·환율·유가 지수의 수준값 → 4주·13주 변화율로 교체", "축산물": "없음"}
     print(f"\n  + 실험으로 채택한 파생 변수: {extra[nm]}  (근거: eda/derived_log.md)")

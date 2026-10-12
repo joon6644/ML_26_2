@@ -94,6 +94,41 @@ def direction_prob(cal, p):
     return np.where(np.abs(p) > BAND, prob, np.nan)
 
 
+def width(s):
+    """터미널에서 차지하는 칸 수 (한글 등 전각 문자는 2칸)."""
+    import unicodedata
+    return sum(2 if unicodedata.east_asian_width(c) in "WF" else 1 for c in str(s))
+
+
+def pad(s, w, right=False):
+    """화면 폭 기준으로 w칸에 맞춤 (pandas·f-string은 한글을 1칸으로 세서 열이 어긋남)."""
+    s = str(s)
+    fill = " " * max(w - width(s), 0)
+    return fill + s if right else s + fill
+
+
+def table(rows, right=()):
+    """dict 목록 → 열 정렬된 표 문자열. right에 든 열은 오른쪽 정렬(숫자)."""
+    cols = list(rows[0])
+    w = {c: max(width(c), *(width(r[c]) for r in rows)) for c in cols}
+    line = lambda r: "  ".join(pad(r[c], w[c], c in right) for c in cols)
+    return "\n".join([line({c: c for c in cols}), "  ".join("-" * w[c] for c in cols)] + [line(r) for r in rows])
+
+
+def show(df, index=False):
+    """DataFrame을 한글 폭에 맞춰 출력 (숫자 열은 오른쪽 정렬)."""
+    import re
+    df = df.reset_index() if index else df
+    looks_num = lambda s: s.dropna().astype(str).str.fullmatch(r"[-+]?[\d,.]+%?|–").all()   # "6,365,641"·"72%" 같은 문자열 숫자도 오른쪽
+    right = tuple(c for c in df.columns if pd.api.types.is_numeric_dtype(df[c]) or looks_num(df[c]))
+    df = df.copy()
+    for c in df.columns:
+        if pd.api.types.is_float_dtype(df[c]):                           # 소수는 열마다 같은 자릿수 (100 이상은 정수 + 쉼표)
+            fmt = "{:,.0f}" if df[c].abs().max() >= 100 else "{:.3f}"
+            df[c] = df[c].map(lambda v: "–" if pd.isna(v) else fmt.format(v))
+    print(table(df.astype(object).where(df.notna(), "–").to_dict("records"), right=right))
+
+
 def prob_text(prob, p):
     """예측 카드 문구: 50% 이하면 주의 문구."""
     if np.isnan(prob):
