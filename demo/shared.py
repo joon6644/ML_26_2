@@ -18,18 +18,6 @@ SIZE_BINS = [(0.01, 0.02, "1~2%"), (0.02, 0.05, "2~5%"), (0.05, 0.10, "5~10%"), 
 sys.stdout.reconfigure(encoding="utf-8")
 
 
-def unpack_bundle():
-    """다른 컴퓨터: 루트에 demo_bundle.zip(scripts/pack_demo.py)만 두면 처음 실행할 때 모델·데이터를 제자리에 푼다."""
-    z = ROOT / "demo_bundle.zip"
-    need = [MODELS / "agri.joblib", P / "agri" / "model_input.parquet"]
-    if z.exists() and not all(f.exists() for f in need):
-        import zipfile
-        print(f"모델·데이터가 없어 {z.name}을 풉니다 (처음 한 번, 수십 초)...", flush=True)
-        zipfile.ZipFile(z).extractall(ROOT)
-
-
-unpack_bundle()
-
 
 def domain(arg):
     """'agri' 또는 '농산물' 어느 쪽으로 받아도 영문 코드로."""
