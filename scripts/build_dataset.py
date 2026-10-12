@@ -41,6 +41,7 @@ def asof(df, feat, by, cols):
         return df.assign(**{c: np.nan for c in cols})
     feat = feat.dropna(subset=["avail"]).sort_values("avail")
     left = df.reset_index().sort_values("date")
+    feat = feat.assign(avail=feat.avail.astype(left.date.dtype))                # parquet 날짜 정밀도(ns/us) 맞춤
     m = pd.merge_asof(left, feat[by + ["avail"] + cols].rename(columns={"avail": "date"}), on="date", by=by or None, direction="backward")
     return m.set_index("index").sort_index()
 
