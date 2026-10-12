@@ -24,3 +24,5 @@ ipykernel
 # 딥러닝 (GPU: pip install torch --index-url https://download.pytorch.org/whl/cu128)
 torch
 
+# 웹 (이후 서비스 앱 개발용)
+streamlit
