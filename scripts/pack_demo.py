@@ -3,7 +3,7 @@
     python scripts/pack_demo.py          # 예측 시연용 (models/ + model_input) → demo_bundle.zip
     python scripts/pack_demo.py --eda    # + EDA 노트북 재실행용 dataset·features·price
 
-다른 컴퓨터에서는 git clone 한 프로젝트 폴더 맨 위에서  python -m zipfile -e demo_bundle.zip .  → 원래 위치로 들어간다.
+다른 컴퓨터에서는 git clone 한 프로젝트 폴더 맨 위에 zip을 그대로 두면, demo 파일을 처음 실행할 때 demo/shared.py가 제자리에 푼다.
 """
 import sys
 import zipfile
@@ -24,4 +24,4 @@ out = ROOT / "demo_bundle.zip"
 with zipfile.ZipFile(out, "w", zipfile.ZIP_STORED) as z:   # parquet은 이미 압축돼 있어 다시 압축하지 않음
     for f in files:
         z.write(f, f.relative_to(ROOT).as_posix())
-print(f"{out.name}  {len(files)}개 파일, {out.stat().st_size / 1e6:,.0f} MB → 구글 드라이브에 올리고, 다른 컴퓨터의 프로젝트 폴더 맨 위에서: python -m zipfile -e demo_bundle.zip .")
+print(f"{out.name}  {len(files)}개 파일, {out.stat().st_size / 1e6:,.0f} MB → 구글 드라이브에 올리고, 다른 컴퓨터의 프로젝트 폴더 맨 위에 그대로 두기 (첫 실행 때 자동으로 풂)")
