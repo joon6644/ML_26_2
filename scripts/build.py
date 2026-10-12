@@ -64,7 +64,40 @@ def price():
     out = out[out.date >= START].sort_values(["ctgry_cd", "item_cd", "date"])
     out["unit_g"], out["unit_g_source"] = unit_grams(out)
     out["price_kg"] = out.price / (out.unit_sz * out.unit_g / 1000)
+    out = link_renamed(out)
     split_domain(out, "ctgry_cd", "price")
+
+
+def link_renamed(out):
+    """KAMIS 품종·등급 이름이 바뀐 시계열을 잇는다 (data/reference/variety_rename.csv).
+
+    옛 이름 구간을 새 이름으로 바꿔 붙이고, 가격은 '바뀐 직후 6주 평균 ÷ 직전 6주 평균'(전국 시장 일 중앙값 기준)을 곱해
+    수준을 맞춘다 — 그대로 이으면 연결 지점에 가짜 급등락이 생기고 1년간 전년 대비가 왜곡된다.
+    하나가 여럿으로 나뉜 경우는 옛 이력을 모든 후속 시계열에 붙이고, 옛 이름 시계열은 지운다."""
+    from common import ROOT
+    path = ROOT / "data" / "reference" / "variety_rename.csv"
+    if not path.exists():
+        return out
+    rn = pd.read_csv(path, dtype=str)
+    key = lambda d, v, g: (d.se_nm == r.se_nm) & (d.item_nm == r.item_nm) & (d.vrty_nm == v) & (d.grd_nm == g)
+    added, drop = [], pd.Series(False, index=out.index)
+    for r in rn.itertuples():
+        old, new = out[key(out, r.old_vrty, r.old_grd)], out[key(out, r.new_vrty, r.new_grd)]
+        if old.empty or new.empty:
+            print(f"  (연결 건너뜀) {r.item_nm} {r.se_nm} {r.old_vrty} {r.old_grd} → {r.new_vrty} {r.new_grd}: 시계열 없음")
+            continue
+        d_old = old.groupby("date").price_kg.median()
+        d_new = new.groupby("date").price_kg.median()
+        ratio = d_new[d_new.index < d_new.index.min() + pd.Timedelta(days=42)].mean() / d_old[d_old.index > d_old.index.max() - pd.Timedelta(days=42)].mean()
+        part = old[old.date < new.date.min()].copy()
+        part["vrty_nm"], part["grd_nm"] = r.new_vrty, r.new_grd
+        part["vrty_cd"], part["grd_cd"] = new.vrty_cd.mode().iloc[0], new.grd_cd.mode().iloc[0]
+        for c in ("price", "price_kg", "price_kg_api"):
+            part[c] = part[c] * ratio
+        added.append(part)
+        drop |= key(out, r.old_vrty, r.old_grd)
+        print(f"  연결: {r.item_nm} {r.se_nm} {r.old_vrty} {r.old_grd} → {r.new_vrty} {r.new_grd}  ({len(part):,}행, 가격 ×{ratio:.2f})")
+    return pd.concat([out[~drop]] + added, ignore_index=True).sort_values(["ctgry_cd", "item_cd", "date"])
 
 
 def ekape_consumer_rows():
