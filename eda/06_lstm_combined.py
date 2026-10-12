@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # LSTM: 농·축·수산 통합 학습 (향후 30일 평균 가격)
 # 05와 같은 피처·전처리·분할(학습 2016~2022, 테스트 2023~2024). 세 분야를 합쳐 LSTM 하나로 학습하고 분야별로 평가.

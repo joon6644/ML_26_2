@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 13차: M14 단조 제약 (방향 점검에서 '일치' 확인된 피처만). 기준 = 기본 + 채택 + 분야별 학습 설정, LGB
 import importlib.util, sys
 from pathlib import Path

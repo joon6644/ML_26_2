@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 14차: M15 방향 3분류 (축·수 우선, 농 포함). 비교: 회귀(최종 구성 LGB 시드 0)의 부호 vs 분류. 확률 임계값별 표시 비율·정확도
 import importlib.util, sys
 from pathlib import Path

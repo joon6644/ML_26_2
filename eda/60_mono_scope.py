@@ -1,3 +1,4 @@
+# [파이프라인 모듈] 학습 데이터(model_frame·processed_R)를 만들 때 실행된다 — 지우지 말 것. 이 파일에 남은 학습 설정(전처리·모델·하이퍼파라미터)은 과거 실험값이며, 현재 서비스 설정은 scripts/model_config.py (eda/README.md)
 # 단조 제약 범위: 농 = 없음 vs 상대값 9개 / 축·수 = 현재(일치 전부) vs 수준값 제외. LGB·XGB·Cat 모두 같은 제약, 균등 평균 + 만장일치 신뢰도
 import importlib.util, sys, time
 from pathlib import Path

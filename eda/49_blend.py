@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 2라운드 B·C + 추론 시간: 가중치·메타 모델은 2016~2021 학습 → 2022 예측으로만 정함(검증셋 미사용)
 # 인자: 분야들, 채택된 A 그룹(JSON: {"agri": ["G1"], ...})
 import importlib.util, sys, time, json

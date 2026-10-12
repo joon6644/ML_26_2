@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # 피처 기술통계량 (가격 제외)
 # 파일·계열별 수치 컬럼의 개수, 결측률, 평균, 표준편차, 분위수, 왜도.

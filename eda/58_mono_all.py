@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 단조 제약: (a) 3종 모두 없음 / (b) 3종 모두 적용 / (현재) LGB만. 축·수, 시드 42·0·1·2·3
 import importlib.util, sys, time
 from pathlib import Path

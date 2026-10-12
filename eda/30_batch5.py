@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 5차: D15·D16·D17 파생변수 + M6(2022 조기 종료로 나무 수) + M7(log1p 타깃). 기준 = 기본 + 채택 누적, 분야별 학습 설정(TRAIN_CFG)
 import importlib.util, sys, time
 from pathlib import Path

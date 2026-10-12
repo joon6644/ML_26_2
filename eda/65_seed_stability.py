@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 최종 설정을 시드 42·43·44로: 성능·신뢰도 등급이 시드에 따라 얼마나 흔들리는지
 import importlib.util, sys, time
 from pathlib import Path

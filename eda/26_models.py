@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 트리 기반 모델 비교 (같은 피처·같은 전처리): LightGBM 기본 / LightGBM 큰 모델 / XGBoost / CatBoost
 # 피처 = 기본 피처 + (인자로 받은) 채택 파생변수. 시드 0. 검증 2023~2024 전체 행
 import importlib.util, sys, time, json

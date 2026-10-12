@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # 피처 다이어트 (SHAP 순위로 원본 변수 줄이기)
 # 선정: 2016~2021 학습 → 2022 검증셋에서 SHAP 비중(LightGBM·XGBoost 평균)으로 원본 변수 순위. 테스트(2023~24)는 선정에 쓰지 않음

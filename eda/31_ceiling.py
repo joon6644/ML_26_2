@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 천장 진단: 검증 y의 분산 중 '시계열(품목·품종·등급·소매/중도매)×날짜 공통 움직임'이 설명하는 몫
 import importlib.util, sys
 from pathlib import Path

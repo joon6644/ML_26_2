@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 3차: 모델 설정 가설 M2(강한 규제) · M3(최근 연도 가중). 피처 = 기본 + 채택 누적(dv.ADOPTED). 시드 0
 import importlib.util, sys, time, json
 from pathlib import Path

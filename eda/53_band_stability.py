@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 보합 기준(±B) 바꾸기 + 연속된 날 예측 안정성. 저장된 회귀 예측(checkpoint) 사용, 축·수는 3진 LGB를 기준별 재학습
 import importlib.util, sys
 from pathlib import Path

@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 6라운드: 스플라인 Ridge(GAM형) + MLP(참고용, 채택 기준: 시드 3개 모두 2σ 이상 개선)를 분야별 확정 구성에 더한 다양성 앙상블. 시드 42·0·1 (확인용), 예측 저장해 재사용
 # 인자: 분야별 확정 구성 JSON 예) '{"agri": ["lgb","xgb","cat"], "livestock": ["lgb","xgb","cat","ridge"], "fishery": ["lgb"]}'
 import importlib.util, sys, time, json

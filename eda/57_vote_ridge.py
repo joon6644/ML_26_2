@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 투표 신뢰도: 부스팅 3종(LGB·XGB·Cat) vs LGB·XGB·Ridge. 시드 42. 표시값 = 세 모델 평균
 import importlib.util, sys
 from pathlib import Path

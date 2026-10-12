@@ -1,3 +1,4 @@
+# [현재 결과] 지금 보고서·서비스 숫자를 만드는 스크립트 (eda/README.md)
 # ★ 확정 구성 v3 성능표 (2026-10-10): LightGBM 하나 + 데이터 정제(하루짜리 튐 → 전날 값) + 타깃 1~99% 자르기 + 결측 처리 없음
 # 검증 예측 = eda/tables/final_val_preds_{분야}.npz 의 lgb (eda/70·71과 같은 구성, ~2022-12-01 학습 → 2023~24)
 # 테스트 예측 = eda/tables/final_test_preds_{분야}.npz (demo/0_train_models.py, ~2024-12-01 학습 → 2025~)

@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # 표준 데이터셋(원본 변수) 성능 측정 (향후 28일 평균 가격)
 # 입력: data/processed/{domain}/dataset.parquet (원본 변수). 타깃 y = target_mean_28d / 최근 7일 평균 가격 − 1 (단순 변화율)

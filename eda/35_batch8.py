@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 8차 (농산물): D20 일조 이상, D21 기온 이상, M11 계열별 모델. 기준 = 기본 + 채택, LGB 단일
 import importlib.util, sys, time
 from pathlib import Path

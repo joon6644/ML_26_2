@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 6차: M8 알고리즘 앙상블, M9 시드 앙상블, M10 2단계(전국 모델 OOF 예측을 피처로). 기준 = 기본 + 채택 + 분야별 학습 설정
 import importlib.util, sys, time
 from pathlib import Path

@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 3라운드: 다양성 앙상블 (서비스 기준 단일 시드 42 — 다중 시드는 확인용으로만 사용)
 # (부스팅 3종 + Ridge + ExtraTrees + RandomForest), 다년 전진 교차 예측으로 조합 추정
 import importlib.util, sys, time, itertools

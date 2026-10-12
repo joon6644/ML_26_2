@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # 베이스라인 모델: 향후 14일 평균 가격 (전처리 전 간이 버전)
 # 도메인(농·축·수) × 모델(선형회귀, XGBoost) = 6개. 기준 모델(가격 유지, 작년 같은 시기)과 비교.

@@ -1,3 +1,4 @@
+# [파이프라인 모듈] 학습 데이터(model_frame·processed_R)를 만들 때 실행된다 — 지우지 말 것. 이 파일에 남은 학습 설정(전처리·모델·하이퍼파라미터)은 과거 실험값이며, 현재 서비스 설정은 scripts/model_config.py (eda/README.md)
 # 품종명 변경 연결(data/reference/variety_rename.csv, scripts/build.py link_renamed) 뒤 학습 데이터 전체 재구성 (2026-10-11)
 #   python eda/74_rebuild_after_rename.py frames_v1   # data/processed/{분야}/model_frame_v1 (검증 분할: 정규화 ~2022-12-01)
 #   python eda/74_rebuild_after_rename.py frames_test # data/processed/{분야}/model_frame_test (테스트 분할: 정규화 ~2024-12-01)
@@ -66,22 +67,19 @@ if __name__ == "__main__":
     elif step == "val":                                                  # 서비스 모델과 같은 입력 (원래 값, MinMax 없음 — 2026-10-12)
         sys.path.insert(0, str(ROOT / "demo"))
         from shared import features
+        from model_config import CATS, SEED, TARGET_CLIP, lgb_params   # 서비스 모델과 같은 설정 파일
         for d in NAMES:
             O = pd.read_parquet(P0 / d / "model_frame_v1.parquet")
             E = O[(O.date >= VAL[2]) & (O.date <= VAL[3]) & O.y.notna()]
             R = pd.read_parquet(PR / d / "model_frame_v1.parquet")
             R = R[(R.date >= VAL[0]) & (R.date <= VAL[1]) & R.y.notna()]
             num = json.loads((P0 / d / "model_frame_v1.json").read_text(encoding="utf-8"))["num"]
-            cats = dv.base_sets(NAMES[d])[1]
+            cats = CATS[d]
             df = pd.concat([R, E[R.columns]], ignore_index=True)
             tr = np.r_[np.ones(len(R), bool), np.zeros(len(E), bool)]
             yv = df.y.values.astype(float)
-            yt = np.clip(yv[tr], *np.nanquantile(yv[tr], (0.01, 0.99)))
-            mono = {} if d == "agri" else {k: v for k, v in dv.MONO[d].items() if k in num and k not in LEVEL}
-            X = features(df, num, cats, seed=42)
-            pl = {**dv.LGB_BASE, "random_state": 42}
-            if mono:
-                pl.update(monotone_constraints=[mono.get(c, 0) for c in X.columns], monotone_constraints_method="advanced")
-            p = lgb.LGBMRegressor(**pl).fit(X[tr], yt, categorical_feature=cats).predict(X[~tr])
+            yt = np.clip(yv[tr], *np.nanquantile(yv[tr], TARGET_CLIP))
+            X = features(df, num, cats, seed=SEED)
+            p = lgb.LGBMRegressor(**lgb_params(d, X.columns)).fit(X[tr], yt, categorical_feature=cats).predict(X[~tr])
             np.savez(T / f"final_val_preds_{d}.npz", lgb=p)
             print(f"  {NAMES[d]} 검증 예측 {len(p):,}행", flush=True)

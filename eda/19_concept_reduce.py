@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # 같은 개념 피처 묶음에서 대표 1개만 남겨도 성능이 유지되는가 (전국 모델, LightGBM, 시드 3개)
 # 묶음은 상관이 아니라 '같은 개념'으로 정의 (기온끼리, 유가끼리, 같은 가격의 다른 출처끼리 …)

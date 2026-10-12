@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # 피처 중복 점검
 # 03_baseline_models.py와 같은 피처를 만들어 (1) 피처 간 상관, (2) VIF, (3) 데이터 수준 중복(같은 값 공유)을 본다.

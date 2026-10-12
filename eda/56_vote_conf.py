@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 신뢰도 방식 비교: (가) 평균 회귀 라벨 + 3진 분류 일치 vs (나) 회귀 3종 개별 라벨 투표 일치. 시드 42
 import importlib.util, sys
 from pathlib import Path

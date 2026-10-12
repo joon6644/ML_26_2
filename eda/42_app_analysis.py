@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 앱 활용 분석 (사전 기록한 계획대로): 예측 크기 임계값별 표시 비율·방향 정확도, 품목별 신뢰도
 import sys
 from pathlib import Path

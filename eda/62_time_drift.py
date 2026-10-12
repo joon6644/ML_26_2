@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # (1) 검증 2년 분기별 성능 (학습 끝에서 멀어질수록?) (2) 연도별 가격 수준 변화 vs 소비자물가 상승률 (2016~2024만)
 import importlib.util, sys
 from pathlib import Path

@@ -1,3 +1,4 @@
+# [파이프라인 모듈] 학습 데이터(model_frame·processed_R)를 만들 때 실행된다 — 지우지 말 것. 이 파일에 남은 학습 설정(전처리·모델·하이퍼파라미터)은 과거 실험값이며, 현재 서비스 설정은 scripts/model_config.py (eda/README.md)
 # %% [markdown]
 # # 파생변수 · 모델 실험 공용 도구 (기본 피처 = data/reference/feature_selection_base_v1.csv 고정)
 # 통합 모델(22번 구성) 위에 파생변수를 붙이고, 같은 시드 비교로 효과를 잰다. 가설·결과 기록: eda/derived_log.md
