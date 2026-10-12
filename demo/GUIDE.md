@@ -6,7 +6,7 @@
 ## 0. 발표 전 준비
 
 - [ ] `python demo/0_train_models.py` 한 번 실행 (약 2분, 이미 해 둠 → `models/`에 세 분야 모델)
-- [ ] **다른 컴퓨터에서 발표할 때:** 이 컴퓨터에서 `python scripts/pack_demo.py --eda` → `demo_bundle.zip`(약 580MB, 모델 + 모델 입력·EDA 데이터)을 구글 드라이브에 올림. 발표 컴퓨터에서 `git clone` → zip을 압축 풀지 말고 프로젝트 폴더 맨 위에 그대로 둠 (시연 파일을 처음 실행할 때 알아서 풂) → `pip install -r requirements-demo.txt` → `python demo/3_predict.py 양파 서울 2025-08-01`이 "+6.6%, 확률 약 67%"면 준비 끝
+- [ ] **다른 컴퓨터에서 발표할 때:** 발표 컴퓨터에서 `git clone` → 이 컴퓨터의 `models/` 폴더와 `data/` 폴더(원본·가공 데이터, git에 없음)를 같은 위치로 복사 → `pip install -r requirements-demo.txt` → `python demo/3_predict.py 양파 서울 2025-08-01`이 "+6.6%, 확률 약 67%"면 준비 끝
 - [ ] VS Code 탭을 아래 순서로 미리 열어 두기
   1. `docs/dataset.md` · 2. `scripts/build_dataset.py` · 3. `scripts/build_features.py` · 4. `demo/2_eda/01~05`
   5. `data/reference/feature_selection.csv` · 6. `eda/24_derived.py` · 7. `eda/60_mono_scope.py` · 8. `eda/derived_log.md`

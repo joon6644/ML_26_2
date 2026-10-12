@@ -47,8 +47,5 @@ catboost_info/
 models/
 demo/output/
 
-# 실험용 재구성 데이터 (eda/68·74 로 재생성, 원본 data/processed 와 일부 하드링크 공유 / processed_backup_* 는 수동 백업)
+# 실험용 재구성 데이터 (eda/68·74 로 재생성, 원본 data/processed 와 일부 하드링크 공유)
 data/processed_*/
-
-# 시연용 묶음 (scripts/pack_demo.py 로 생성)
-demo_bundle.zip
