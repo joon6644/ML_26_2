@@ -42,3 +42,10 @@ eda/tables/*.parquet
 
 # 학습 부산물
 catboost_info/
+
+# 시연용 학습 모델·그래프 (demo/0_train_models.py, demo/3_predict.py 로 재생성)
+models/
+demo/output/
+
+# 실험용 재구성 데이터 (eda/68·74 로 재생성, 원본 data/processed 와 일부 하드링크 공유 / processed_backup_* 는 수동 백업)
+data/processed_*/
