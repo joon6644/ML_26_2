@@ -124,7 +124,8 @@ def perf():
     print(table(rows, right=num))
     print("\n예측 크기별 방향 정확도 (예측 변화가 클수록 방향이 잘 맞는다)\n")
     print(table([{"예측 크기": n, **v} for n, v in sizes.items()], right=tuple(NAMES.values())))
-    print(f"\n카드 확률(= a + b·ln|예측 크기|)과 실제 비율의 차이: 최대 {max(gaps):.0%}p  (곡선: eda/figures/direction_prob_curve.png)")
+    print(f"\n카드 확률(= a + b·ln|예측 크기|)과 실제 비율의 차이: 최대 {max(gaps):.0%}p  — 카드 계수는 이 기간 정답까지 써서 맞춘 것이라 참고용."
+          "\n  학습에 안 쓴 기간 기준 평가는 eda/73_direction_prob.py (검증으로만 맞춘 식 → 테스트), 곡선: eda/figures/direction_prob_curve.png")
 
 if __name__ == "__main__":
     a = sys.argv[1:]

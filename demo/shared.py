@@ -91,7 +91,7 @@ def size_bin(p):
 
 
 def load_prob(d):
-    """예측 크기 → '실제로 그 방향으로 1% 넘게 움직일 확률' 보정기 (eda/73_direction_prob.py, 검증 2023~24로 맞춤)."""
+    """예측 크기 → '실제로 그 방향으로 1% 넘게 움직일 확률' 보정기 (eda/73_direction_prob.py, 학습에 안 쓴 예측 중 정답이 나온 것 전부로 맞춤)."""
     import joblib
     path = MODELS / f"prob_{d}.joblib"
     if not path.exists():
@@ -100,7 +100,7 @@ def load_prob(d):
 
 
 def direction_prob(cal, p):
-    """표시용 확률 = a + b·ln|ŷ| (선형회귀), 1% 단위, 최대 85%. 보합(±1% 이내) 예측은 NaN."""
+    """표시용 확률 = a + b·ln|ŷ| (선형회귀), 1% 단위, 분야별 상한(상위 1% 예측의 실제 적중률)까지. 보합(±1% 이내) 예측은 NaN."""
     p = np.asarray(p, dtype=float)
     raw = np.clip(cal["a"] + cal["b"] * np.log(np.maximum(np.abs(p), 1e-6)), 0, 1)
     prob = np.minimum(np.round(raw / cal["step"]) * cal["step"], cal["cap"])
