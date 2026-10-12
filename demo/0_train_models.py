@@ -10,6 +10,7 @@
     직전 조사일 가격으로 대치 → data/processed_R/ (eda/68_outlier_removal.py 로 생성)
   - 학습 처리 (세 분야 공통): 학습 타깃 상하위 1% 자르기
   - 결측 처리: 없음 (NaN 그대로, 트리가 비어 있는 경우를 따로 갈라 학습) — eda/71_no_impute.py
+  - 스케일 변환 없음: 트리는 값의 순서만 보므로 원래 값 그대로 (2026-10-12, MinMax 제거)
   - 단조 제약: 축·수산만, 상대값 피처에 가설 방향 고정
 입력 = data/processed/{분야}/model_input.parquet (scripts/build_model_input.py)
   학습 행 = 정제 데이터 2016-01 ~ 2024-12-01 / 테스트 행 = 원래 데이터 2025-01~ (오늘 튄 값이 하루짜리인지는 다음 날에야 알 수 있으므로)
@@ -21,24 +22,13 @@ import time
 import joblib
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import MinMaxScaler
 
-from shared import MODELS, NAMES, ROOT, TRAIN, domain, load_frame, predict
+from shared import MODELS, NAMES, ROOT, TRAIN, domain, features, load_frame, predict
 
 ns = {"__file__": str(ROOT / "eda" / "60_mono_scope.py")}
 exec(open(ROOT / "eda" / "60_mono_scope.py", encoding="utf-8").read().split("for d in [")[0], ns)   # 실험 때 쓴 학습 도구 그대로
 dv, LEVEL = ns["dv"], ns["LEVEL"]
 import lightgbm as lgb   # noqa: E402
-
-
-def prep_nofill(df, num, tr_m):
-    """결측을 채우지 않는 전처리: 무한대만 NaN으로, MinMax는 학습 구간 기준 (NaN은 건너뛰고 그대로 둠)."""
-    X = df[num].astype("float32").replace([np.inf, -np.inf], np.nan)
-    return pd.DataFrame(MinMaxScaler().fit(X[tr_m]).transform(X).astype("float32"), columns=num, index=df.index)
-
-
-dv.cs.rm.prep = prep_nofill   # dv.matrix 가 쓰는 전처리 (원래는 학습 평균으로 결측 채움)
-
 
 def train(d):
     t0 = time.time()
@@ -46,7 +36,6 @@ def train(d):
     df, num = load_frame(d)                                               # 통합 데이터: split = 학습(정제 데이터) / 테스트(원래 데이터)
     R, E = df[df.split == "학습"], df[df.split == "테스트"]
     df = pd.concat([R, E], ignore_index=True)
-    df.attrs["scope"] = {c[8:]: df[c].values.astype(bool) for c in df.columns if c.startswith("_scope__")}
     cats = dv.base_sets(nm)[1]
     tr = np.r_[np.ones(len(R), bool), np.zeros(len(E), bool)]
     yv = df.y.values.astype(float)
@@ -54,7 +43,7 @@ def train(d):
     mono = {} if d == "agri" else {k: v for k, v in dv.MONO[d].items() if k in num and k not in LEVEL}
     print(f"[{nm}] 학습 행 {tr.sum():,} (정제 데이터) / 피처 {len(num) + len(cats)}개 / 타깃 1~99% 자르기, 단조 제약 {len(mono)}개", flush=True)
 
-    X = dv.matrix(df, num, cats, tr, 42)   # 피처 순서 섞기·전처리까지 실험 때와 동일 (MinMax는 학습 행 기준)
+    X = features(df, num, cats, seed=42)   # 원래 값 그대로, 대상 밖 품목 = OUT_OF_SCOPE, 범주형
     pl = {**dv.LGB_BASE, "random_state": 42}
     if mono:
         pl.update(monotone_constraints=[mono.get(c, 0) for c in X.columns], monotone_constraints_method="advanced")
@@ -62,12 +51,9 @@ def train(d):
     model = lgb.LGBMRegressor(**pl).fit(X[tr], yt, categorical_feature=cats)
     print(f"  LightGBM {time.time() - t:.0f}초", flush=True)
 
-    # 예측 때 같은 전처리를 하기 위한 값 (학습 구간 기준)
-    order = [c for c in X.columns if c not in cats]
-    Xn = df[order].astype("float32").replace([np.inf, -np.inf], np.nan)
-    meta = {"num_order": order, "cats": cats, "columns": list(X.columns),
-            "scaler": MinMaxScaler().fit(Xn[tr]),
-            "scope": list(df.attrs["scope"]), "categories": {c: list(X[c].cat.categories) for c in cats}}
+    # 예측 때 같은 입력을 만들기 위한 값 (피처 목록·순서 시드·범주)
+    meta = {"num": num, "cats": cats, "seed": 42, "columns": list(X.columns),
+            "categories": {c: list(X[c].cat.categories) for c in cats}}
     MODELS.mkdir(exist_ok=True)
     bundle = {"model": model, "meta": meta, "domain": d, "train": TRAIN}
     joblib.dump(bundle, MODELS / f"{d}.joblib")
