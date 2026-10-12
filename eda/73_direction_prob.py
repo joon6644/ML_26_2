@@ -3,7 +3,7 @@
 # 방법 (2026-10-12 변경): 선형회귀 확률 = a + b·ln|ŷ| (0~85%로 자름), 분야별, 검증(2023~24) 예측으로 맞추고 테스트(2025~26)에서 확인
 #   예측 크기를 로그 눈금으로 보면 적중률이 거의 직선 → b·ln2 = '예측이 2배 커지면 확률이 몇 %p 오르나'.
 #   이전 등위 회귀는 계단 모양이라(예측 크기가 조금 달라도 같은 확률, 경계에서 뜀) 바꿈. 로지스틱 회귀도 비교 → 테스트 Brier 같거나 선형이 약간 나음 (아래 비교표)
-# 표시 규칙: 5% 단위 반올림, 최대 85% (테스트에서 높은 구간이 과대평가됨), 50% 이하면 "신뢰성이 낮으니 판단에 주의하세요"
+# 표시 규칙: 식 값을 1% 단위로(구간 표 없이), 최대 85% (테스트에서 높은 구간이 과대평가됨), 50% 이하면 "신뢰성이 낮으니 판단에 주의하세요"
 # 출력: models/prob_{분야}.joblib (서비스·시연용 계수), eda/tables/direction_prob.csv (예측 크기별 확률), direction_prob_check.csv (테스트 확인),
 #       eda/figures/direction_prob_curve.png (예측 크기 → 확률 곡선 + 테스트 실제 적중률)
 import sys
@@ -16,7 +16,7 @@ from sklearn.linear_model import LinearRegression, LogisticRegression
 ROOT = Path(__file__).resolve().parent.parent
 T, P0, M, F = ROOT / "eda" / "tables", ROOT / "data" / "processed", ROOT / "models", ROOT / "eda" / "figures"
 NAMES = {"agri": "농산물", "livestock": "축산물", "fishery": "수산물"}
-CAP, STEP = 0.85, 0.05
+CAP, STEP = 0.85, 0.01                                                   # 식 값 그대로(1% 단위), 최대 85%
 sys.stdout.reconfigure(encoding="utf-8")
 
 
@@ -65,7 +65,7 @@ if __name__ == "__main__":
             pr = float(prob(a, b, g))
             grid.append({"분야": nm, "예측 크기 |ŷ|": f"{g:.1%}", "확률 (보정값)": round(pr, 3), "표시": f"{shown(pr):.0%}" if pr > 0.5 else "신뢰성 낮음"})
         sh = shown(prob(a, b, st))
-        for lab, m in [("50% 이하 (주의 문구)", sh <= 0.5)] + [(f"{x:.0%}", np.isclose(sh, x)) for x in np.arange(0.55, CAP + 1e-9, STEP)]:
+        for lab, m in [("50% 이하 (주의 문구)", sh <= 0.5)] + [(f"{x - 0.04:.0%}~{x:.0%}", (sh > x - 0.05 + 1e-9) & (sh <= x + 1e-9)) for x in np.arange(0.55, CAP + 1e-9, 0.05)]:   # 확인용으로만 5%p 구간에 묶음
             if m.any():
                 check.append({"분야": nm, "표시": lab, "테스트 행 비율": round(float(m.mean()), 3), "실제 적중률": round(float(ht[m].mean()), 3)})
         # 그래프: 곡선(검증으로 맞춤) + 테스트 실제 적중률(예측 크기 구간별)

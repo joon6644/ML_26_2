@@ -107,7 +107,7 @@ def perf():
             m = b == name
             sizes.append({"분야": NAMES[d], "예측 크기": name, "비율": f"{m.mean():.0%}", "방향 정확도": round(float(ok[m & mv].mean()), 3)})
         pr, real = direction_prob(load_prob(d), p), np.sign(p) * y > BAND
-        for lab, m in [("50% 이하 → 주의 문구", pr <= 0.5)] + [(f"{x:.0%}", np.isclose(pr, x)) for x in np.arange(0.55, 0.851, 0.05)]:
+        for lab, m in [("50% 이하 → 주의 문구", pr <= 0.5)] + [(f"{x - 0.04:.0%}~{x:.0%}", (pr > x - 0.05 + 1e-9) & (pr <= x + 1e-9)) for x in np.arange(0.55, 0.851, 0.05)]:   # 5%p 구간으로 묶어 확인
             if m.any():
                 probs.append({"분야": NAMES[d], "표시": lab, "실제": f"{real[m].mean():.0%}"})
         print(f"  {NAMES[d]} 예측 {len(df):,}행 완료", flush=True)
