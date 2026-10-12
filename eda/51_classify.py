@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 4라운드: 분류 모델 묶음 C1(3진)·C2(이진)·C3(순서형) vs 회귀. 시드 42, 저장된 피처 사용
 import importlib.util, sys, time
 from pathlib import Path

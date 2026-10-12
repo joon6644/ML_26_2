@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 7차: D18 주산지 기상 누적, D19 같은 계열 오늘 튐. 기준 = 기본 + 채택 + 분야별 학습 설정, LGB 단일 모델로 비교 (앙상블은 최종에)
 import importlib.util, sys, time
 from pathlib import Path

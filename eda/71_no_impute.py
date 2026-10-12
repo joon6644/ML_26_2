@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 결측 처리 비교 (사용자 요청 2026-10-09): 학습 구간 평균으로 채움(현재) vs 아무 처리 안 함(NaN 그대로)
 # 나머지는 확정 구성 v2와 동일: 정제 데이터로 학습, 타깃 1~99% 자르기, LGB+XGB+Cat 평균, 단조 제약(축·수), 시드 42, MinMax(학습 구간, NaN은 건너뜀)
 # 세 모델 모두 결측을 스스로 다룸: LightGBM·XGBoost = 갈라질 때 NaN을 보낼 쪽을 학습 / CatBoost = NaN을 가장 작은 값으로 취급(기본)

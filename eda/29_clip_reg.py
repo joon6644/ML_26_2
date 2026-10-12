@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 4차: 타깃 극단값 처리(M1·M1b·M1c) × 규제(M2) × 최근 가중(M3). 피처 = 기본 + 채택 누적. 시드 0 (최종 후보는 시드 추가)
 import importlib.util, sys, time
 from pathlib import Path

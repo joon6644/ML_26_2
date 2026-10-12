@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # 상관 높은 피처 묶음에서 대표 1개만 남겨도 성능이 유지되는가 (전국 모델, LightGBM)
 # 묶음: 학습 기간 Spearman |ρ| ≥ 임계값으로 계층 군집 (complete linkage → 묶음 안 모든 쌍이 임계값 이상)

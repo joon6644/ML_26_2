@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # 지역 + 전국 통합 학습 (분야별 모델 1개로 지역 예측과 전국 예측을 함께)
 # 학습 데이터 = 지역 시계열 행(13번과 동일) + 전국 시계열 행(features.parquet, 지역 = "전국", 프리미엄 = 0, 전국 가격 이력 = 자기 이력)

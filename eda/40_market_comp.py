@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 12차: 시장 구성 효과 D28·D29·D30 (농·수, 지역 행). 기준 = 기본 + 채택 + 분야별 학습 설정, LGB
 import importlib.util, sys, time
 from pathlib import Path

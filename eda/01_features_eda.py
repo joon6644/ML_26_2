@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # 피처 EDA (가격 제외)
 # 가격(타깃)을 뺀 피처 파일들의 기간·결측·분포·계절성·가격과의 관계를 본다.

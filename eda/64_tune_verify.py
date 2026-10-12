@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 7라운드 검증: 모델별 순위 r위 설정 앙상블 vs 기본 앙상블 (시드 42·0·1). 1위가 기준 미달이면 2위·3위 순으로
 import importlib.util, sys, json, time
 from pathlib import Path

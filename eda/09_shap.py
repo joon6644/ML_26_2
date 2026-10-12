@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # SHAP 기여도 (표준 데이터셋 원본 변수, 향후 28일 평균 가격, 단순 변화율 타깃)
 # 08의 ③ 세트(원본 + 주차 + 가격 이력, year·설추석까지 일수 제외)로 LightGBM·XGBoost를 학습하고

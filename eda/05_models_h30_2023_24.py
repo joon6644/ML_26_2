@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # 선형회귀 · XGBoost · LSTM 비교 (향후 30일 평균 가격)
 # 학습 2016~2022, 테스트 2023~2024. 전처리(세 모델 공통): 결측 = 학습셋 평균, MinMax 스케일링(학습셋으로만 fit).

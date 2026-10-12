@@ -1,3 +1,4 @@
+# [파이프라인 모듈] 학습 데이터(model_frame·processed_R)를 만들 때 실행된다 — 지우지 말 것. 이 파일에 남은 학습 설정(전처리·모델·하이퍼파라미터)은 과거 실험값이며, 현재 서비스 설정은 scripts/model_config.py (eda/README.md)
 # %% [markdown]
 # # 최종 피처 선택 평가 (data/reference/feature_selection.csv)
 # 비교: ① 전체 피처 (features.parquet 전부 + 신규 3개) ② CSV에 남은 피처

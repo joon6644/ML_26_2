@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # 공급 피처 추가 전후 비교 (향후 30일 평균 가격)
 # 피처 세트: 기본(03의 피처) vs 기본 + 공급(supply_features.py). 모델: 선형회귀 · 랜덤포레스트 · XGBoost · LightGBM.

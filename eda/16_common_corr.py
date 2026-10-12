@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # 공통 피처 상관관계 (학습 기간 2016~2022, Spearman)
 # 1) 공통 피처끼리: 분야별 상관행렬 → |ρ| ≥ 0.8 쌍, 농산물 히트맵

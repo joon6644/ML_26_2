@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # 피처 방향 점검: 사전 가설(feature_selection.csv '기대 방향') vs SHAP
 # 통합 모델(22번 구성, 최종 선택, 시드 0)에서 검증 행 표본의 SHAP 값을 뽑아, 피처 값이 클수록 예측을 올렸는지 내렸는지 확인

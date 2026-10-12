@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 """공급 측 피처 (07 실험용). 모든 피처는 예측 시점 t에 공개돼 있던 값만 쓴다.
 
 월·분기·연 통계는 '공개일'(기간 종료 + 공개 시차)을 만들어 merge_asof(backward)로 붙인다.

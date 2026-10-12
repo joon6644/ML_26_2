@@ -1,3 +1,4 @@
+# [현재 결과] 지금 보고서·서비스 숫자를 만드는 스크립트 (eda/README.md)
 # 과제2 (1차 예측 모델 보고서): 첫 예측 모델 RandomForest — 검증 기간만 사용 (테스트 기간은 쓰지 않음)
 #   학습 2016-01 ~ 2022-12-01 (원래 데이터, 정제·타깃 자르기 없음) → 검증 2023-01 ~ 2024-12, 평가는 소매 행
 #   → eda/tables/report2_rf.csv (성능), report2_rf_size.csv (예측 크기별 방향 정확도), report2_rf_kpi.csv (절약·손실), report2_rf_cards.csv (예시 후보)

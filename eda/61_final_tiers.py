@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 확정 구성(시드 42)의 신뢰도 등급별 성능: 높음(같은 방향 만장일치) / 보통(모두 보합) / 낮음(엇갈림)
 import importlib.util, sys
 from pathlib import Path

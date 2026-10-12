@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # 고상관 피처 묶음별 압축 실험 (묶음 하나씩, 대표 후보 전부 비교)
 # 묶음: 학습 기간 Spearman |ρ| ≥ 0.9 / ≥ 0.8 complete-linkage 군집 (중복 제거)

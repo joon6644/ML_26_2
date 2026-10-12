@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # 1차 보고서용 EDA (데이터 품질 · 가격 구조 · 계절성 · 자기상관 · 이상치 · 외부 변수 · 식재료 군집 · 모델 성능)
 # 입력: data/processed/{domain}/dataset.parquet, features.parquet

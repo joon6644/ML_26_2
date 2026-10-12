@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # LSTM (지역 + 전국 통합 데이터, 향후 28일 평균 가격 변화율)
 # 입력 = ① 과거 91일 가격 시퀀스 (log(가격 / 최근 7일 평균), 조사 여부 마스크) → LSTM

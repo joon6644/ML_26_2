@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 16차: D31 수출 증가율, D32 산지 단가 전년비 (수산물). 기준 = 최종 구성의 LGB 단일(단조 제약·Huber), 새 피처는 단조 제약 없음
 import importlib.util, sys
 from pathlib import Path

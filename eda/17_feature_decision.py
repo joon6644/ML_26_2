@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # %% [markdown]
 # # 피처 정리 의사결정 자료 (전국 모델, features.parquet, 학습 2016~2022 / 테스트 2023~2024)
 # A. 피처별: 결측률(학습 기간), 데이터 시작일, y와 Spearman ρ, SHAP 비중(LightGBM, 테스트 2만 행), 가장 비슷한 피처와 ρ

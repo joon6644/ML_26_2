@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 5라운드: 분야별 회귀 후보 6종 다중 시드 검증 (확인용 시드 42,0,1,2,3 / 서비스는 42)
 import importlib.util, sys, time
 from pathlib import Path

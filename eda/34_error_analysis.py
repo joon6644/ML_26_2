@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 농산물 오차 분석: 품목·월·지역/전국별로 오차 제곱합(SSE) 비중과 품목별 R², 공통 움직임 상한
 import importlib.util, sys
 from pathlib import Path

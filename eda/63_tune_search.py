@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 7라운드 탐색: 모델별 하이퍼파라미터 (시드 42 단일). 분야 학습 설정·단조 제약(확정 범위) 적용
 import importlib.util, sys, time, itertools, json
 from pathlib import Path

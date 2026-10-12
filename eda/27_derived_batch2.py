@@ -1,3 +1,4 @@
+# [기록용 실험] 과거 설정으로 돌린 실험 — 현재 설정이 아님. 결과는 eda/derived_log.md, 현재 설정은 scripts/model_config.py, 학습은 demo/0_train_models.py (eda/README.md)
 # 2차 파생변수 실험: (기본 + 채택 누적) + 각 2차 파생변수 하나씩 / 전부, 그리고 M1(학습 y 1~99% clip). 시드 0, 애매하면 1·2 추가
 import importlib.util, sys, time
 from pathlib import Path
