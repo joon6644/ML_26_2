@@ -77,13 +77,13 @@ if __name__ == "__main__":
         act = [ht[bins == k].mean() * 100 for k in range(12)]
         ax.plot(mid, act, "o", color="#2e86ab", ms=6, label="테스트 실제 적중률 (2025~26)")
         ax.axhline(50, color="#999", lw=0.8, ls=":")
-        ax.text(29, 47, "50% 이하 → 주의 문구", fontsize=8, color="#666", ha="right")
-        ax.set_xscale("log")
-        ax.set_xticks([1, 2, 5, 10, 20, 30], ["1%", "2%", "5%", "10%", "20%", "30%"])
+        ax.text(29, 51, "50% 이하 → 주의 문구", fontsize=8, color="#666", ha="right")
+        ax.set_xlim(0, 30)                                                # 원본 눈금 → 식이 로그 곡선으로 보임
+        ax.xaxis.set_major_formatter(lambda v, _: f"{v:.0f}%")
         ax.set_title(nm)
-        ax.set_xlabel("예측 변화 크기 (절댓값, 로그 눈금)")
+        ax.set_xlabel("예측 변화 크기 (절댓값)")
     axes[0].set_ylabel("예측 방향으로 1% 넘게 움직일 확률 (%)")
-    axes[0].legend(frameon=False, fontsize=8, loc="upper left")
+    axes[0].legend(frameon=False, fontsize=8, loc="lower right")
     fig.tight_layout()
     fig.savefig(F / "direction_prob_curve.png", dpi=150)
     pd.DataFrame(grid).to_csv(T / "direction_prob.csv", index=False, encoding="utf-8-sig")
