@@ -62,7 +62,7 @@
 
 ## 4. 사람이 한 판단 (약 2분, 평가 중점)
 
-`eda/derived_log.md`를 열고 아래 절을 차례로 보여준다 (줄 번호로 이동). 요약 표가 필요하면 `python demo/4_judgment.py`.
+`eda/derived_log.md`를 열고 아래 절을 차례로 보여준다 (줄 번호로 이동). 검증 vs 테스트·전진 검증·시드 표는 `python demo/4_judgment.py`.
 
 | 줄 | 절 | 보여줄 판단 |
 |---|---|---|
